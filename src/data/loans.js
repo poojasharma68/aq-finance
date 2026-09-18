@@ -1,0 +1,213 @@
+// DEMO DATA — indicative figures for layout purposes only.
+// Replace with the live terms agreed with each lending partner.
+
+export const loans = [
+  {
+    slug: "personal",
+    name: "Personal Loan",
+    shortName: "Personal",
+    icon: "personal",
+    tagline: "For a wedding, a hospital bill or a long-planned trip — without pledging anything.",
+    summary:
+      "Unsecured credit sanctioned on your income and repayment history. Salaried applicants with a clean record usually hear back within a day.",
+    amount: { min: 50_000, max: 40_00_000 },
+    tenure: { min: 12, max: 60 },
+    rateFrom: 10.49,
+    processingFee: "Up to 2% + GST",
+    processingTime: "1–3 working days",
+    eligibility: "Salaried or self-employed · ₹25,000+ monthly income · aged 21 to 58",
+    features: [
+      "No collateral or guarantor",
+      "Part-prepayment allowed after 6 EMIs",
+      "Top-up on an existing loan",
+      "Pre-approved offers for listed employers",
+    ],
+    documents: [
+      "PAN and Aadhaar",
+      "Last 3 months' salary slips",
+      "6 months' salary account statement",
+      "Employee ID card",
+    ],
+    purposes: ["Wedding", "Medical expenses", "Travel", "Home renovation", "Consumer purchase", "Other"],
+    example: { amount: 5_00_000, months: 36 },
+  },
+  {
+    slug: "home",
+    name: "Home Loan",
+    shortName: "Home",
+    icon: "home",
+    tagline: "Buy, build or renovate, with repayment spread over as long as 30 years.",
+    summary:
+      "We handle the lender's legal and technical checks with your builder or seller, so the property paperwork doesn't become your second job.",
+    amount: { min: 5_00_000, max: 10_00_00_000 },
+    tenure: { min: 60, max: 360 },
+    rateFrom: 8.35,
+    processingFee: "0.25%–0.5% + GST",
+    processingTime: "7–12 working days",
+    eligibility: "Salaried or self-employed · CIBIL 700+ preferred · age up to 65 at maturity",
+    features: [
+      "Up to 90% of the property value funded",
+      "No prepayment charge on floating rates",
+      "Balance transfer from your current lender",
+      "Builder and title checks handled for you",
+    ],
+    documents: [
+      "KYC of all applicants",
+      "Form 16 or ITR for 2 years",
+      "Sale agreement / allotment letter",
+      "Approved building plan",
+    ],
+    purposes: [
+      "Ready-to-move purchase",
+      "Under-construction property",
+      "Plot + construction",
+      "Renovation / extension",
+      "Balance transfer",
+    ],
+    example: { amount: 50_00_000, months: 240 },
+  },
+  {
+    slug: "business",
+    name: "Business Loan",
+    shortName: "Business",
+    icon: "business",
+    tagline: "Working capital, machinery or a second outlet — unsecured up to ₹75 lakh.",
+    summary:
+      "Assessed on your GST returns and bank statements rather than a pile of CA certificates. Suits traders, manufacturers and service businesses.",
+    amount: { min: 3_00_000, max: 75_00_000 },
+    tenure: { min: 12, max: 60 },
+    rateFrom: 14.5,
+    processingFee: "1.5%–3% + GST",
+    processingTime: "3–5 working days",
+    eligibility: "2+ years in business · ITR filed · annual turnover ₹40 lakh+",
+    features: [
+      "Collateral-free up to ₹75 lakh",
+      "Flexi limit — interest only on what you draw",
+      "GST-based fast assessment",
+      "Doorstep document pickup",
+    ],
+    documents: [
+      "GST certificate / business registration",
+      "ITR with computation for 2 years",
+      "12 months' current account statement",
+      "KYC of promoters",
+    ],
+    purposes: ["Working capital", "Machinery / equipment", "Business expansion", "Inventory purchase", "Other"],
+    example: { amount: 15_00_000, months: 48 },
+  },
+  {
+    slug: "property",
+    name: "Loan Against Property",
+    shortName: "Against Property",
+    icon: "property",
+    tagline: "Raise a larger sum at a lower rate against property you already own.",
+    summary:
+      "Residential or commercial property with a clear title can secure a loan at close to home-loan rates — and you keep living in it or running from it.",
+    amount: { min: 10_00_000, max: 5_00_00_000 },
+    tenure: { min: 36, max: 180 },
+    rateFrom: 9.25,
+    processingFee: "0.5%–1% + GST",
+    processingTime: "7–10 working days",
+    eligibility: "Self-occupied or rented property with clear title · stable income",
+    features: [
+      "Up to 65% of market value",
+      "Lower rate than unsecured credit",
+      "Continue using the property",
+      "Overdraft variant available",
+    ],
+    documents: [
+      "Title deed and chain documents",
+      "Latest property tax receipt",
+      "Income proof for 2 years",
+      "KYC of all owners",
+    ],
+    purposes: ["Business funding", "Child's education", "Debt consolidation", "Medical expenses", "Other"],
+    example: { amount: 40_00_000, months: 120 },
+  },
+  {
+    slug: "education",
+    name: "Education Loan",
+    shortName: "Education",
+    icon: "education",
+    tagline: "Tuition, hostel and travel covered — in India or abroad.",
+    summary:
+      "Sanction letters arrive in time for visa appointments, and repayment only starts after the course ends plus a grace period.",
+    amount: { min: 1_00_000, max: 1_50_00_000 },
+    tenure: { min: 60, max: 180 },
+    rateFrom: 9.5,
+    processingFee: "Nil to 1% + GST",
+    processingTime: "5–10 working days",
+    eligibility: "Confirmed admission · parent or guardian as co-applicant",
+    features: [
+      "Moratorium for course period + 6–12 months",
+      "Interest deduction under Section 80E",
+      "Pre-visa sanction letters",
+      "Collateral-free for listed universities",
+    ],
+    documents: [
+      "Admission / offer letter",
+      "Fee structure from the institution",
+      "Marksheets (10th, 12th, graduation)",
+      "Co-applicant's income proof",
+    ],
+    purposes: ["Tuition fees (India)", "Study abroad", "Professional course", "Other"],
+    example: { amount: 25_00_000, months: 120 },
+  },
+  {
+    slug: "consolidation",
+    name: "OD / BT / Debt Consolidation",
+    shortName: "Debt Consolidation",
+    icon: "consolidation",
+    tagline: "Fold several EMIs and card balances into one smaller monthly payment.",
+    summary:
+      "Move expensive card dues and multiple loans to a single lender at a lower rate, or set up an overdraft so you only pay for what you use.",
+    amount: { min: 1_00_000, max: 50_00_000 },
+    tenure: { min: 12, max: 84 },
+    rateFrom: 11.25,
+    processingFee: "Up to 1.5% + GST",
+    processingTime: "3–5 working days",
+    eligibility: "Regular repayment record on existing loans · salaried or self-employed",
+    features: [
+      "Clear high-interest credit card dues",
+      "Balance transfer with top-up",
+      "Overdraft with interest on usage",
+      "One EMI date to track",
+    ],
+    documents: [
+      "Statements of current loans and cards",
+      "Foreclosure letters from lenders",
+      "Income proof",
+      "PAN and Aadhaar",
+    ],
+    purposes: ["Credit card dues", "Multiple personal loans", "Balance transfer", "Overdraft facility"],
+    example: { amount: 8_00_000, months: 48 },
+  },
+];
+
+export const amountRanges = [
+  { value: "upto-5l", label: "Up to ₹5 lakh", max: 5_00_000 },
+  { value: "5l-10l", label: "₹5 – 10 lakh", max: 10_00_000 },
+  { value: "10l-25l", label: "₹10 – 25 lakh", max: 25_00_000 },
+  { value: "25l-50l", label: "₹25 – 50 lakh", max: 50_00_000 },
+  { value: "50l-1cr", label: "₹50 lakh – ₹1 crore", max: 1_00_00_000 },
+  { value: "above-1cr", label: "Above ₹1 crore", max: Infinity },
+];
+
+export function amountToRange(amount) {
+  return amountRanges.find((range) => amount <= range.max)?.value ?? "";
+}
+
+export const salaryRanges = [
+  { value: "below-25k", label: "Below ₹25,000" },
+  { value: "25k-50k", label: "₹25,000 – ₹50,000" },
+  { value: "50k-1l", label: "₹50,000 – ₹1,00,000" },
+  { value: "1l-2l", label: "₹1,00,000 – ₹2,00,000" },
+  { value: "above-2l", label: "Above ₹2,00,000" },
+];
+
+export const turnoverRanges = [
+  { value: "below-40l", label: "Below ₹40 lakh" },
+  { value: "40l-1cr", label: "₹40 lakh – ₹1 crore" },
+  { value: "1cr-5cr", label: "₹1 – 5 crore" },
+  { value: "above-5cr", label: "Above ₹5 crore" },
+];

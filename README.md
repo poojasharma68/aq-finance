@@ -1,36 +1,52 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# AQ Finance — website
 
-## Getting Started
+Marketing site and loan application flow for AQ Finance, built with Next.js 16 (App Router, JavaScript), Tailwind CSS 4 and Motion.
 
-First, run the development server:
+## Run it
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev        # http://localhost:3000
+npm run build && npm start   # production
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Pages
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+| Route           | What's there                                                                 |
+| --------------- | ---------------------------------------------------------------------------- |
+| `/`             | Hero with live offer preview, stats, partner marquee, loan list, EMI calculator, process, stories, FAQ |
+| `/apply`        | Full application form with validation, progress tracker and success screen. Accepts `?type=home&amount=5000000` to prefill |
+| `/loans`        | Tabbed product explorer (`?type=personal` deep-links to a tab)               |
+| `/partners`     | Filterable directory of banks, NBFCs and housing finance companies           |
+| `/testimonials` | Rating summary and filterable customer stories                               |
+| `/contact`      | Contact form, channels, offices, grievance officer                            |
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Where things live
 
-## Learn More
+```
+src/
+  app/                 routes, API handlers (api/applications, api/contact)
+  components/          shared UI (header, footer, logo, theme, motion helpers, form parts)
+  components/home/     home page sections
+  data/                ALL demo content — loans, partners, testimonials, company details
+  lib/                 EMI maths, formatting, zod schemas, submission storage
+```
 
-To learn more about Next.js, take a look at the following resources:
+## Replacing the demo content
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **Company details, stats, FAQs, offices** → `src/data/site.js`
+- **Loan products, rates, documents** → `src/data/loans.js`
+- **Partner lenders** → `src/data/partners.js`. Only publish a lender's name or logo once empanelment and co-branding are approved.
+- **Testimonials** → `src/data/testimonials.js` (use real, consented reviews)
+- **Logo** → `src/components/logo.jsx` draws the AQ mark as SVG. To use your original file, put it in `public/brand/` and follow the comment at the top of that file. The browser tab icon is `src/app/icon.svg`.
+- **Brand colours** → CSS variables at the top of `src/app/globals.css` (light theme under `:root`, dark under `[data-theme="dark"]`).
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Forms
 
-## Deploy on Vercel
+Both forms validate in the browser and again on the server using the same schemas (`src/lib/schemas.js`). Each includes a hidden honeypot field to catch basic spam bots.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Submissions are currently written to `.data/applications.json` and `.data/messages.json` (git-ignored) so you can see them locally. **Before deploying**, replace `saveSubmission` in `src/lib/submissions.js` with your CRM, database or email service — hosts like Vercel have a read-only filesystem, so the JSON files won't persist there.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Theme
+
+Light and dark themes follow the visitor's system setting by default; the toggle in the header overrides it and remembers the choice. An inline script in `<head>` applies the theme before first paint, so there's no flash on load.
