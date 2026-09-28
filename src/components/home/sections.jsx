@@ -80,8 +80,8 @@ function MarqueeRow({ items, reverse = false }) {
           "flex w-max shrink-0 gap-4 pr-4 group-hover:[animation-play-state:paused]",
           // slower on phones, where the same speed crosses a narrow screen much faster
           reverse
-            ? "animate-marquee-reverse max-sm:[animation-duration:130s]"
-            : "animate-marquee max-sm:[animation-duration:110s]",
+            ? "animate-marquee-reverse max-sm:[animation-duration:160s]"
+            : "animate-marquee max-sm:[animation-duration:140s]",
         ].join(" ")}
       >
         {[...loop, ...loop].map((partner, i) => (

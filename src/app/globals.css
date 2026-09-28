@@ -123,8 +123,8 @@
   --font-brand: var(--font-cinzel), ui-serif, Georgia, serif;
 
   --ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);
-  --animate-marquee: marquee 48s linear infinite;
-  --animate-marquee-reverse: marquee 56s linear infinite reverse;
+  --animate-marquee: marquee 80s linear infinite;
+  --animate-marquee-reverse: marquee 95s linear infinite reverse;
   --animate-emi-glow: emi-glow 9s ease-in-out infinite;
 }
 
