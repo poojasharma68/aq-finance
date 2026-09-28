@@ -23,7 +23,7 @@ export async function POST(request) {
   }
 
   const { website, consent, ...application } = result.data;
-  const reference = createReference("BJF");
+  const reference = createReference("SBFT");
 
   await saveSubmission("applications", {
     reference,

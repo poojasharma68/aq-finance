@@ -4,7 +4,7 @@ import { ApplyForm } from "./apply-form";
 
 export const metadata = {
   title: "Apply for a loan",
-  description: "Tell us what you need in two minutes. A Bala Ji Finance advisor calls back within four working hours.",
+  description: "Tell us what you need in two minutes. An SBFT advisor calls back within four working hours.",
 };
 
 const promises = [

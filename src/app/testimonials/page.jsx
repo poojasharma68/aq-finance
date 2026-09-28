@@ -9,7 +9,7 @@ import { TestimonialWall } from "./testimonial-wall";
 
 export const metadata = {
   title: "Customer stories",
-  description: "What borrowers say about getting their loan through Bala Ji Finance.",
+  description: "What borrowers say about getting their loan through SBFT.",
 };
 
 export default function TestimonialsPage() {

@@ -8,7 +8,7 @@ import { PartnerDirectory } from "./partner-directory";
 
 export const metadata = {
   title: "Our partners",
-  description: "The banks, NBFCs and housing finance companies Bala Ji Finance works with, and the loans each one offers.",
+  description: "The banks, NBFCs and housing finance companies SBFT works with, and the loans each one offers.",
 };
 
 const reasons = [
@@ -64,7 +64,7 @@ export default function PartnersPage() {
         <div className="shell">
           <Reveal>
             <SectionLabel className="text-saffron!">Why it matters to you</SectionLabel>
-            <h2 className="mt-5 max-w-2xl font-display text-[clamp(2.2rem,4.4vw,3.4rem)] leading-[1.02] tracking-tight">
+            <h2 className="mt-5 max-w-2xl font-display text-[clamp(2rem,4vw,2.9rem)] leading-[1.02] tracking-tight">
               Your trusted loan facilitator.
             </h2>
           </Reveal>

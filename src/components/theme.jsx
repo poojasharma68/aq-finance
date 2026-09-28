@@ -5,7 +5,7 @@ import { AnimatePresence, motion } from "motion/react";
 import { Moon, Sun } from "lucide-react";
 import { cn } from "@/lib/cn";
 
-export const THEME_STORAGE_KEY = "bjf-theme";
+export const THEME_STORAGE_KEY = "sbft-theme";
 
 function subscribe(callback) {
   const observer = new MutationObserver(callback);

@@ -13,12 +13,12 @@ export function ProcessSteps() {
   const progress = useSpring(scrollYProgress, { stiffness: 120, damping: 30, mass: 0.4 });
 
   return (
-    <section className="border-t border-line py-20 md:py-28">
+    <section className="border-t border-line section-y">
       <div className="shell">
         <div className="grid gap-6 md:grid-cols-12 md:items-end">
           <Reveal className="md:col-span-7">
-            <SectionLabel index="03">How it works</SectionLabel>
-            <h2 className="mt-5 font-display text-[clamp(2.2rem,4.4vw,3.4rem)] leading-[1.02] tracking-tight text-ink">
+            <SectionLabel index="02">How it works</SectionLabel>
+            <h2 className="mt-5 font-display text-[clamp(2rem,4vw,2.9rem)] leading-[1.02] tracking-tight text-ink">
               From first call to <em className="text-saffron-ink">money in your account.</em>
             </h2>
           </Reveal>

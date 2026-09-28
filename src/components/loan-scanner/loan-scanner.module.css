@@ -1,0 +1,1184 @@
+.hero {
+  /* Neutrals and the brand accent are inherited from the site's theme tokens,
+     so the hero follows light/dark with the rest of the page. The fallbacks
+     keep the component self-contained if it is dropped into another app. */
+  --dsa-ink: var(--ink, #0b2549);
+  --dsa-ink-soft: var(--ink-soft, #3a4a62);
+  --dsa-muted: var(--muted, #636e81);
+  --dsa-bg: var(--bg, #faf7f2);
+  --dsa-surface: var(--surface, #ffffff);
+  --dsa-line: var(--line, rgb(4 35 76 / 0.11));
+  --dsa-line-strong: var(--line-strong, rgb(4 35 76 / 0.22));
+
+  /* brand accent — saffron. -deep is the text-safe shade, -lift the highlight
+     that gives the lens rim and the chips their machined-brass sheen. */
+  --dsa-accent: var(--saffron, #e8841a);
+  --dsa-accent-deep: var(--saffron-ink, #a8520a);
+  --dsa-accent-lift: #f9c98a;
+  --dsa-accent-soft: var(--saffron-soft, #fcebd6);
+  --dsa-on-accent: var(--on-saffron, #04234c);
+
+  /* The only green in the hero, and it means one thing: approved. Verdicts,
+     the checkmark and the LOAN APPROVED stamp use it; nothing else does. */
+  --dsa-ok: #12a36a;
+  --dsa-ok-bright: #2cc98a;
+  --dsa-ok-deep: #0a7a4e;
+  --dsa-ok-darker: #076241;
+  --dsa-ok-tint: #e8f8ef;
+
+  /* glass surfaces and the shadow colour, both flipped for the dark theme */
+  --dsa-glass-a: rgb(255 255 255 / 0.96);
+  --dsa-glass-b: rgb(255 255 255 / 0.78);
+  --dsa-sheen: rgb(255 255 255 / 0.9);
+  --dsa-shadow: 4 35 76;
+
+  --card-w: 8.5rem;
+  --lens: 5.25rem;
+  --ease-premium: cubic-bezier(0.22, 1, 0.36, 1);
+
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background: var(--dsa-bg);
+  color: var(--dsa-ink);
+  font-family: inherit;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---------- backdrop ---------------------------------------------------- */
+
+.backdrop {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* soft saffron wash behind the animation */
+.backdrop::before {
+  content: "";
+  position: absolute;
+  inset: -22% -12% auto auto;
+  width: 46rem;
+  height: 46rem;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 50% 50%,
+    color-mix(in oklab, var(--dsa-accent) 13%, transparent),
+    color-mix(in oklab, var(--dsa-accent) 5%, transparent) 42%,
+    transparent 68%
+  );
+}
+
+/* hairline grid, faded out towards the bottom */
+.backdrop::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(to right, var(--dsa-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--dsa-line) 1px, transparent 1px);
+  background-size: 5.5rem 5.5rem;
+  mask-image: linear-gradient(to bottom, rgb(0 0 0 / 0.75), transparent 78%);
+  -webkit-mask-image: linear-gradient(to bottom, rgb(0 0 0 / 0.75), transparent 78%);
+}
+
+.inner {
+  width: 100%;
+  max-width: 78rem;
+  margin-inline: auto;
+  padding: 0;
+  display: grid;
+  gap: 2.75rem;
+  align-items: center;
+  padding-bottom:60px;
+}
+
+
+@media (width >= 64rem) {
+  .inner {
+    grid-template-columns: minmax(0, 1.12fr) minmax(0, 1fr);
+    gap: 3rem;
+  }
+}
+
+/* ---------- left column ------------------------------------------------- */
+
+.copy {
+  max-width: 34rem;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.4rem 0.85rem 0.4rem 0.7rem;
+  border: 1px solid var(--dsa-line-strong);
+  border-radius: 999px;
+  background: linear-gradient(140deg, var(--dsa-surface), var(--dsa-accent-soft));
+  box-shadow: 0 1px 2px rgb(var(--dsa-shadow) / 0.05);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--dsa-accent-deep);
+}
+
+.eyebrowDot {
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 50%;
+  background: var(--dsa-accent);
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--dsa-accent) 18%, transparent);
+}
+
+.headline {
+  margin: 1.5rem 0 0;
+  /* capped so "Find the Right Loan." holds one line at desktop widths */
+  font-size: clamp(2.3rem, 4.6vw, 3.35rem);
+  font-weight: 700;
+  line-height: 1.04;
+  letter-spacing: -0.033em;
+  text-wrap: balance;
+  color: var(--dsa-ink);
+}
+
+.headlineLine {
+  display: block;
+}
+
+.accent {
+  position: relative;
+  color: var(--dsa-accent-deep);
+  font-style: normal;
+  white-space: nowrap;
+}
+
+.accentStroke {
+  position: absolute;
+  left: -2%;
+  bottom: -0.17em;
+  width: 104%;
+  height: 0.34em;
+  overflow: visible;
+  color: var(--dsa-accent-lift);
+}
+
+.support {
+  margin: 1.4rem 0 0;
+  font-size: 1.04rem;
+  line-height: 1.65;
+  color: var(--dsa-ink-soft);
+  text-wrap: pretty;
+}
+
+.actions {
+  margin-top: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+}
+
+.cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  height: 3.3rem;
+  padding-inline: 1.75rem;
+  border: 0;
+  border-radius: 999px;
+  background: linear-gradient(
+    140deg,
+    color-mix(in oklab, var(--dsa-accent) 92%, white),
+    var(--dsa-accent)
+  );
+  color: var(--dsa-on-accent);
+  font: inherit;
+  font-size: 0.97rem;
+  font-weight: 650;
+  cursor: pointer;
+  text-decoration: none;
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.22),
+    0 10px 26px -14px color-mix(in oklab, var(--dsa-accent-deep) 85%, transparent);
+  transition:
+    transform 0.35s var(--ease-premium),
+    box-shadow 0.35s var(--ease-premium),
+    filter 0.35s var(--ease-premium);
+}
+
+.cta:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.08);
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.22),
+    0 16px 34px -14px color-mix(in oklab, var(--dsa-accent-deep) 90%, transparent);
+}
+
+.cta:active {
+  transform: translateY(0) scale(0.985);
+}
+
+.cta:focus-visible {
+  outline: 2px solid var(--dsa-accent-deep);
+  outline-offset: 3px;
+}
+
+.ctaArrow {
+  width: 1.05rem;
+  height: 1.05rem;
+  transition: transform 0.35s var(--ease-premium);
+}
+
+.cta:hover .ctaArrow {
+  transform: translateX(4px);
+}
+
+.trust {
+  margin: 1.15rem 0 0;
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--dsa-muted);
+}
+
+.trustSep {
+  color: var(--dsa-accent);
+}
+
+/* ---------- stage ------------------------------------------------------- */
+
+.stageWrap {
+  display: flex;
+  justify-content: center;
+}
+
+.stage {
+  position: relative;
+  width: min(100%, 34rem);
+  aspect-ratio: 1 / 1;
+  perspective: 1100px;
+  perspective-origin: 50% 46%;
+}
+
+/* The cluster lives on a 3D plane so cards can lift and recede in depth. */
+.plane {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+}
+
+/* The scanner and the result card sit in a flat layer *above* that plane.
+   Inside a preserve-3d context the painting order follows 3D depth, not
+   z-index, so a card lifted with translateZ would otherwise cover the lens.
+   The layer matches the plane's box exactly, so both share one coordinate
+   space and the scanner's travel maths is unaffected. */
+.overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* the ground the cluster floats over */
+.platform {
+  position: absolute;
+  left: 50%;
+  top: 63%;
+  width: 62%;
+  height: 22%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: radial-gradient(
+    ellipse at 50% 50%,
+    color-mix(in oklab, var(--dsa-accent) 9%, transparent),
+    color-mix(in oklab, var(--dsa-accent) 3%, transparent) 45%,
+    transparent 72%
+  );
+  filter: blur(6px);
+  pointer-events: none;
+}
+
+.orbit {
+  position: absolute;
+  inset: 12%;
+  border-radius: 50%;
+  border: 1px dashed color-mix(in oklab, var(--dsa-accent) 16%, transparent);
+  pointer-events: none;
+}
+
+/* ---------- bank cards -------------------------------------------------- */
+
+.slot {
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  width: var(--card-w);
+  transform-style: preserve-3d;
+  /* GSAP applies the -50%/-50% centring, so it owns the whole transform */
+}
+
+/* positioned so the glow halo is anchored to the card and rides the float
+   with it rather than staying pinned to the slot */
+.float {
+  position: relative;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.card {
+  position: relative;
+  padding: 0.6rem 0.7rem;
+  border: 1px solid var(--dsa-line);
+  border-radius: 0.9rem;
+  background:
+    linear-gradient(150deg, var(--dsa-glass-a), var(--dsa-glass-b)),
+    linear-gradient(150deg, var(--dsa-accent-soft), var(--dsa-surface));
+  box-shadow:
+    inset 0 1px 0 var(--dsa-sheen),
+    0 1px 2px rgb(var(--dsa-shadow) / 0.04),
+    0 14px 28px -18px rgb(var(--dsa-shadow) / 0.45);
+  overflow: hidden;
+  transform: translateZ(var(--lift, 0px)) rotateX(var(--tilt-x, 0deg))
+    rotateY(var(--tilt-y, 0deg));
+  transition:
+    transform 0.5s var(--ease-premium),
+    box-shadow 0.5s var(--ease-premium),
+    border-color 0.5s var(--ease-premium);
+}
+
+/* pointer tilt is written to --tilt-x/--tilt-y by BankCard; while the pointer
+   is moving we shorten the transition so the card tracks it closely */
+.card[data-tilting="true"] {
+  transition-duration: 0.12s, 0.5s, 0.5s;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .slot:hover .card {
+    --lift: 24px;
+    border-color: color-mix(in oklab, var(--dsa-accent) 40%, transparent);
+    box-shadow:
+      inset 0 1px 0 var(--dsa-sheen),
+      0 0 0 3px color-mix(in oklab, var(--dsa-accent) 10%, transparent),
+      0 24px 40px -20px rgb(var(--dsa-shadow) / 0.5);
+  }
+}
+
+.cardTop {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.mark {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 1.6rem;
+  height: 1.6rem;
+  border-radius: 0.5rem;
+  background: var(--mark-bg);
+  color: var(--mark-ink);
+  box-shadow: inset 0 0 0 1px rgb(var(--dsa-shadow) / 0.05);
+}
+
+.markIcon {
+  width: 0.9rem;
+  height: 0.9rem;
+}
+
+.cardIdentity {
+  min-width: 0;
+}
+
+.cardName {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  line-height: 1.15;
+  color: var(--dsa-ink);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.cardKind {
+  display: block;
+  font-size: 0.56rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--dsa-muted);
+}
+
+.cardBottom {
+  margin-top: 0.5rem;
+  padding-top: 0.45rem;
+  border-top: 1px solid var(--dsa-line);
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.35rem;
+}
+
+.cardRate {
+  font-size: 0.82rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+  color: var(--dsa-ink);
+  transition: color 0.45s var(--ease-premium);
+}
+
+/* the timeline flags a card as read; the look of it belongs here */
+.card[data-state="checked"] .cardRate {
+  color: var(--dsa-ok-deep);
+}
+
+.cardRateUnit {
+  font-size: 0.56rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--dsa-muted);
+}
+
+/* accent wash + halo while a card is being scanned (GSAP fades it in) */
+.cardGlow {
+  position: absolute;
+  inset: -0.3rem;
+  border-radius: 1.2rem;
+  border: 1px solid color-mix(in oklab, var(--dsa-accent) 45%, transparent);
+  background: color-mix(in oklab, var(--dsa-accent) 5%, transparent);
+  box-shadow:
+    0 0 0 4px color-mix(in oklab, var(--dsa-accent) 8%, transparent),
+    0 14px 32px -14px color-mix(in oklab, var(--dsa-accent) 60%, transparent);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* the beam that sweeps down a card as it is read */
+.cardLine {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 42%;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    color-mix(in oklab, var(--dsa-accent-lift) 28%, transparent) 62%,
+    color-mix(in oklab, var(--dsa-accent) 90%, transparent)
+  );
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.cardCheck {
+  position: absolute;
+  top: 0.45rem;
+  right: 0.5rem;
+  display: grid;
+  place-items: center;
+  width: 1.05rem;
+  height: 1.05rem;
+  border-radius: 50%;
+  background: linear-gradient(140deg, var(--dsa-ok-bright), var(--dsa-ok-deep));
+  color: #fff;
+  box-shadow: 0 2px 6px -1px color-mix(in oklab, var(--dsa-ok-darker) 55%, transparent);
+  opacity: 0;
+  visibility: hidden;
+}
+
+.cardCheckIcon {
+  width: 0.62rem;
+  height: 0.62rem;
+}
+
+/* ---------- the scanner ------------------------------------------------- */
+
+.scanner {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: var(--lens);
+  z-index: 3;
+  pointer-events: none;
+  will-change: transform;
+}
+
+.scannerFloat,
+.scannerTilt {
+  position: relative;
+}
+
+/* the ring that pings outward each time a card is read */
+.ping {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: calc(var(--lens) * 1.5);
+  height: calc(var(--lens) * 1.5);
+  margin: calc(var(--lens) * -0.75) 0 0 calc(var(--lens) * -0.75);
+  border-radius: 50%;
+  border: 1.5px solid color-mix(in oklab, var(--dsa-accent-lift) 55%, transparent);
+  background: radial-gradient(circle, color-mix(in oklab, var(--dsa-accent-lift) 10%, transparent), transparent 68%);
+  opacity: 0;
+  visibility: hidden;
+}
+
+/* The rim: a machined green ring. Kept thick enough to read as metal and
+   bright enough to catch the eye, with the glass inside left clear so the
+   card underneath is genuinely magnified rather than hidden. */
+.lensRing {
+  position: relative;
+  width: var(--lens);
+  height: var(--lens);
+  border-radius: 50%;
+  filter: drop-shadow(0 12px 18px color-mix(in oklab, var(--dsa-accent-deep) 40%, transparent));
+}
+
+/* The rim is drawn on a pseudo-element and masked into a true ring. Painting
+   the conic gradient on .lensRing itself would put it *behind* the glass and
+   the lens would read as a solid green disc instead of glass. */
+.lensRing::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: conic-gradient(
+    from 125deg,
+    var(--dsa-accent-lift),
+    var(--dsa-accent) 12%,
+    var(--dsa-accent-deep) 30%,
+    var(--dsa-accent) 46%,
+    var(--dsa-accent-lift) 56%,
+    var(--dsa-accent-deep) 72%,
+    var(--dsa-accent-deep) 86%,
+    var(--dsa-accent-lift)
+  );
+  mask: radial-gradient(
+    circle at 50% 50%,
+    transparent 0 calc(50% - 5px),
+    #000 calc(50% - 4.4px) 100%
+  );
+  -webkit-mask: radial-gradient(
+    circle at 50% 50%,
+    transparent 0 calc(50% - 5px),
+    #000 calc(50% - 4.4px) 100%
+  );
+}
+
+.lensGlass {
+  position: absolute;
+  inset: 5px;
+  border-radius: 50%;
+  overflow: hidden;
+  background:
+    linear-gradient(
+      128deg,
+      rgb(255 255 255 / 0.55) 0 18%,
+      rgb(255 255 255 / 0.06) 30% 62%,
+      rgb(255 255 255 / 0.3) 78% 100%
+    ),
+    radial-gradient(circle at 50% 50%, color-mix(in oklab, var(--dsa-accent-soft) 22%, transparent), color-mix(in oklab, var(--dsa-accent) 5%, transparent) 100%);
+  backdrop-filter: blur(0.5px) saturate(1.35) brightness(1.05);
+  -webkit-backdrop-filter: blur(0.5px) saturate(1.35) brightness(1.05);
+  box-shadow:
+    inset 0 0 0 1px color-mix(in oklab, var(--dsa-accent-deep) 18%, transparent),
+    inset 0 0 8px rgb(255 255 255 / 0.4);
+}
+
+/* radar sweep inside the glass */
+.beam {
+  position: absolute;
+  inset: -25%;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    color-mix(in oklab, var(--dsa-accent-lift) 42%, transparent) 26deg,
+    color-mix(in oklab, var(--dsa-accent) 10%, transparent) 52deg,
+    transparent 62deg
+  );
+  will-change: transform;
+}
+
+.lensGrid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(to right, color-mix(in oklab, var(--dsa-accent-deep) 10%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in oklab, var(--dsa-accent-deep) 10%, transparent) 1px, transparent 1px);
+  background-size: 0.68rem 0.68rem;
+  background-position: center;
+  opacity: 0.5;
+}
+
+/* a surveyor's crosshair rather than a box, so the lens reads as an
+   instrument that is measuring the card under it */
+.lensCross {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 42%;
+  height: 42%;
+  transform: translate(-50%, -50%);
+}
+
+.lensCross::before,
+.lensCross::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  background: color-mix(in oklab, var(--dsa-accent-deep) 40%, transparent);
+}
+
+.lensCross::before {
+  width: 100%;
+  height: 1px;
+  transform: translate(-50%, -50%);
+}
+
+.lensCross::after {
+  width: 1px;
+  height: 100%;
+  transform: translate(-50%, -50%);
+}
+
+/* specular flare — pulses as the scanner hands over to the result card */
+.lensFlare {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgb(255 255 255 / 0.9),
+    rgb(255 255 255 / 0) 62%
+  );
+  opacity: 0;
+  visibility: hidden;
+}
+
+.handle {
+  position: absolute;
+  right: 2%;
+  bottom: -30%;
+  width: 0.7rem;
+  height: 2.3rem;
+  transform: rotate(-45deg);
+  transform-origin: top center;
+  border-radius: 999px;
+  background: linear-gradient(
+    95deg,
+    var(--dsa-accent-deep) 0 18%,
+    var(--dsa-accent) 42%,
+    var(--dsa-accent-lift) 54%,
+    var(--dsa-accent-deep) 72%,
+    var(--dsa-accent-deep)
+  );
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.4),
+    0 8px 16px -8px color-mix(in oklab, var(--dsa-accent-deep) 75%, transparent);
+}
+
+/* the collar where the handle meets the rim */
+.handle::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 0.1rem;
+  width: 0.95rem;
+  height: 0.34rem;
+  transform: translateX(-50%);
+  border-radius: 999px;
+  background: linear-gradient(95deg, var(--dsa-accent-deep), var(--dsa-accent) 50%, var(--dsa-accent-deep));
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.35);
+}
+
+.handle::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0.3rem;
+  width: 0.16rem;
+  height: 0.95rem;
+  transform: translateX(-50%);
+  border-radius: 999px;
+  background: rgb(255 255 255 / 0.28);
+}
+
+.particles {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 0;
+  height: 0;
+}
+
+/* a tick chip is a verdict, so it reads green; the ₹ and % chips stay accent */
+.particleOk {
+  border-color: color-mix(in oklab, var(--dsa-ok) 32%, transparent);
+  color: var(--dsa-ok-deep);
+}
+
+.particle {
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: grid;
+  place-items: center;
+  min-width: 1.15rem;
+  height: 1.15rem;
+  margin: -0.575rem 0 0 -0.575rem;
+  padding-inline: 0.2rem;
+  border: 1px solid color-mix(in oklab, var(--dsa-accent) 28%, transparent);
+  border-radius: 0.4rem;
+  background: var(--dsa-glass-a);
+  color: var(--dsa-accent-deep);
+  font-size: 0.6rem;
+  font-weight: 700;
+  line-height: 1;
+  box-shadow: 0 4px 10px -4px color-mix(in oklab, var(--dsa-accent-deep) 40%, transparent);
+  opacity: 0;
+  visibility: hidden;
+}
+
+/* ---------- status pill ------------------------------------------------- */
+
+.status {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  z-index: 4;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.95rem;
+  border: 1px solid var(--dsa-line-strong);
+  border-radius: 999px;
+  background: var(--dsa-glass-a);
+  backdrop-filter: blur(10px) saturate(1.2);
+  -webkit-backdrop-filter: blur(10px) saturate(1.2);
+  box-shadow:
+    inset 0 1px 0 var(--dsa-sheen),
+    0 10px 24px -14px rgb(var(--dsa-shadow) / 0.5);
+  white-space: nowrap;
+  transition: border-color 0.4s var(--ease-premium);
+}
+
+.statusDot {
+  flex: none;
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 50%;
+  background: var(--dsa-accent);
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--dsa-accent) 16%, transparent);
+  transition:
+    background-color 0.4s var(--ease-premium),
+    box-shadow 0.4s var(--ease-premium);
+}
+
+.statusText {
+  font-size: 0.78rem;
+  font-weight: 650;
+  letter-spacing: -0.005em;
+  color: var(--dsa-ink-soft);
+  transition: color 0.4s var(--ease-premium);
+}
+
+.status[data-tone="done"] .statusDot,
+.status[data-tone="approved"] .statusDot {
+  background: var(--dsa-ok-deep);
+  box-shadow: 0 0 0 4px color-mix(in oklab, var(--dsa-ok-deep) 18%, transparent);
+}
+
+.status[data-tone="done"] .statusText,
+.status[data-tone="approved"] .statusText {
+  color: var(--dsa-ok-deep);
+}
+
+.status[data-tone="approved"] {
+  border-color: color-mix(in oklab, var(--dsa-ok) 45%, transparent);
+}
+
+/* ---------- the approved offer ------------------------------------------ */
+
+.approval {
+  position: absolute;
+  left: 50%;
+  top: 47%;
+  width: min(17rem, 78%);
+  z-index: 5;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  /* GSAP owns the centring transform */
+}
+
+.approvalCard {
+  position: relative;
+  padding: 1.1rem 1.1rem 0.95rem;
+  border: 1px solid color-mix(in oklab, var(--dsa-ok) 28%, transparent);
+  border-radius: 1.25rem;
+  background:
+    linear-gradient(160deg, var(--dsa-glass-a), var(--dsa-glass-a)),
+    linear-gradient(160deg, var(--dsa-ok-tint), var(--dsa-surface));
+  box-shadow:
+    inset 0 1px 0 var(--dsa-sheen),
+    0 0 0 5px color-mix(in oklab, var(--dsa-ok) 7%, transparent),
+    0 30px 60px -28px color-mix(in oklab, var(--dsa-ok-darker) 55%, transparent);
+  text-align: center;
+}
+
+.approvalBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.3rem 0.7rem;
+  border-radius: 999px;
+  background: linear-gradient(140deg, var(--dsa-ok-deep), var(--dsa-ok-darker));
+  color: #fff;
+  font-size: 0.6rem;
+  font-weight: 800;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  box-shadow: 0 6px 16px -8px color-mix(in oklab, var(--dsa-ok-darker) 80%, transparent);
+}
+
+.approvalBadgeIcon {
+  width: 0.65rem;
+  height: 0.65rem;
+}
+
+.check {
+  display: block;
+  width: 3.1rem;
+  height: 3.1rem;
+  margin: 0.85rem auto 0;
+  overflow: visible;
+}
+
+.checkRing {
+  filter: drop-shadow(0 6px 14px color-mix(in oklab, var(--dsa-ok-darker) 45%, transparent));
+}
+
+.checkPath {
+  fill: none;
+  stroke: #fff;
+  stroke-width: 6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.approvalLabel {
+  margin: 0.7rem 0 0;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: var(--dsa-muted);
+}
+
+.approvalLender {
+  margin: 0.3rem 0 0;
+  font-size: 0.97rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--dsa-ink);
+}
+
+.approvalMeta {
+  margin: 0.1rem 0 0;
+  font-size: 0.66rem;
+  font-weight: 600;
+  color: var(--dsa-muted);
+}
+
+.approvalFigures {
+  margin-top: 0.75rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border: 1px solid var(--dsa-line);
+  border-radius: 0.8rem;
+  background: var(--dsa-glass-b);
+  overflow: hidden;
+}
+
+.figureCell {
+  padding: 0.5rem 0.4rem 0.55rem;
+}
+
+.figureCell + .figureCell {
+  border-left: 1px solid var(--dsa-line);
+}
+
+.figureValue {
+  display: block;
+  font-size: 0.98rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.025em;
+  color: var(--dsa-ok-deep);
+}
+
+.figureLabel {
+  display: block;
+  margin-top: 0.1rem;
+  font-size: 0.56rem;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--dsa-muted);
+}
+
+.stampWrap {
+  position: relative;
+  margin-top: 0.8rem;
+}
+
+.stampGlow {
+  position: absolute;
+  inset: -0.55rem -0.8rem;
+  border-radius: 999px;
+  background: radial-gradient(
+    ellipse at 50% 50%,
+    color-mix(in oklab, var(--dsa-ok-bright) 45%, transparent),
+    transparent 70%
+  );
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.stamp {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  padding: 0.6rem 0.9rem;
+  border-radius: 0.8rem;
+  background: linear-gradient(140deg, var(--dsa-ok-deep), var(--dsa-ok-darker));
+  color: #fff;
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.25),
+    0 14px 26px -14px color-mix(in oklab, var(--dsa-ok-darker) 90%, transparent);
+  opacity: 0;
+  visibility: hidden;
+}
+
+.stampIcon {
+  width: 0.95rem;
+  height: 0.95rem;
+}
+
+.sparkles {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 0;
+  height: 0;
+  z-index: 6;
+  pointer-events: none;
+}
+
+.sparkle {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 0.5rem;
+  height: 0.5rem;
+  margin: -0.25rem 0 0 -0.25rem;
+  color: var(--dsa-ok-bright);
+  opacity: 0;
+  visibility: hidden;
+}
+
+.sparkle:nth-child(even) {
+  width: 0.36rem;
+  height: 0.36rem;
+  margin: -0.18rem 0 0 -0.18rem;
+  color: var(--dsa-ok);
+}
+
+/* ---------- screen-reader summary of the animation ---------------------- */
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* ---------- responsive -------------------------------------------------- */
+
+@media (width < 64rem) {
+  .hero {
+    --card-w: 8.5rem;
+    --lens: 5rem;
+  }
+
+  .stage {
+    width: min(100%, 29rem);
+  }
+}
+
+@media (width < 40rem) {
+  .hero {
+    --card-w: 7.75rem;
+    --lens: 4rem;
+  }
+
+  .stage {
+    width: min(92vw, 21.5rem);
+  }
+
+  /* the copy is tightened on a phone so the animation still lands close to
+     the fold rather than being pushed off the bottom of the screen */
+  .inner {
+    gap: 1.75rem;
+    padding-top: 2.25rem;
+  }
+
+  .headline {
+    margin-top: 1.2rem;
+    font-size: clamp(2rem, 8.6vw, 2.5rem);
+    letter-spacing: -0.03em;
+  }
+
+  .support {
+    margin-top: 1.05rem;
+    font-size: 0.97rem;
+    line-height: 1.55;
+  }
+
+  .actions {
+    margin-top: 1.6rem;
+  }
+
+  .trust {
+    margin-top: 0.9rem;
+  }
+
+  .cardName {
+    font-size: 0.7rem;
+  }
+
+  .slot {
+    left: var(--x-sm, var(--x));
+    top: var(--y-sm, var(--y));
+  }
+
+  /* only three lenders on a phone, so the cluster stays legible. The timeline
+     reads the DOM, sees these are hidden and shortens the scan to match. */
+  .slotCompactHidden {
+    display: none;
+  }
+
+  /* a phone stage is short, so the result card is scaled down to keep clear
+     of the status pill at the bottom edge */
+  .approval {
+    width: min(14.25rem, 88%);
+    top: 45%;
+  }
+
+  .approvalCard {
+    padding: 0.85rem 0.85rem 0.8rem;
+    border-radius: 1.1rem;
+  }
+
+  .check {
+    width: 2.5rem;
+    height: 2.5rem;
+    margin-top: 0.6rem;
+  }
+
+  .approvalLabel {
+    margin-top: 0.55rem;
+    font-size: 0.64rem;
+  }
+
+  .approvalLender {
+    font-size: 0.9rem;
+  }
+
+  .approvalMeta {
+    font-size: 0.62rem;
+  }
+
+  .approvalFigures {
+    margin-top: 0.6rem;
+  }
+
+  .figureValue {
+    font-size: 0.88rem;
+  }
+
+  .stampWrap {
+    margin-top: 0.6rem;
+  }
+
+  .stamp {
+    padding: 0.5rem 0.7rem;
+    font-size: 0.68rem;
+  }
+
+  .orbit {
+    inset: 16%;
+  }
+}
+
+/* ---------- dark theme -------------------------------------------------- */
+
+/* The tokens above already follow the site's theme; these are the values that
+   cannot be derived from it — white glass and navy shadows both need to invert
+   on a dark background. */
+:global([data-theme="dark"]) .hero {
+  --dsa-glass-a: color-mix(in oklab, var(--dsa-surface) 92%, transparent);
+  --dsa-glass-b: color-mix(in oklab, var(--dsa-surface) 70%, transparent);
+  --dsa-sheen: rgb(255 255 255 / 0.07);
+  --dsa-shadow: 0 0 0;
+  --dsa-ok-tint: #0d3526;
+  --dsa-accent-lift: #f0b878;
+}
+
+/* ---------- no-JS / reduced-motion resting state ------------------------ */
+
+@media (prefers-reduced-motion: reduce) {
+  .approval,
+  .stamp,
+  .cardCheck {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .scanner {
+    opacity: 0;
+  }
+
+  .card,
+  .cta,
+  .ctaArrow,
+  .statusText,
+  .statusDot,
+  .status {
+    transition-duration: 0.01ms;
+  }
+}

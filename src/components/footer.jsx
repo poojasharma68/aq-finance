@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { loans } from "@/data/loans";
-import { contact, navigation, offices } from "@/data/site";
+import { brand, contact, navigation, offices } from "@/data/site";
 import { FullLogo } from "./logo";
 
 const company = [
@@ -21,7 +21,7 @@ export function Footer() {
       <div className="shell pt-16 pb-8 md:pt-20">
         <div className="grid gap-12 md:grid-cols-12">
           <div className="md:col-span-4">
-            <FullLogo tone="dark" className="w-48" />
+            <FullLogo tone="dark" className="w-full max-w-68" />
             <p className="mt-7 max-w-xs text-sm leading-relaxed text-on-navy-muted">
               We help salaried professionals and business owners compare and secure loans from India&apos;s
               leading banks and NBFCs — with one advisor from application to disbursal.
@@ -78,14 +78,15 @@ export function Footer() {
         {/* oversized wordmark, cropped by the footer edge */}
         <p
           aria-hidden="true"
-          className="pointer-events-none mt-16 select-none whitespace-nowrap text-center font-brand text-[10.5vw] font-bold leading-[0.8] tracking-tight text-white/[0.045] xl:text-[8.6rem]"
+          className="pointer-events-none mt-16 select-none whitespace-nowrap text-center font-brand text-[4.7vw] font-bold uppercase leading-[0.8] tracking-tight text-white/[0.05] xl:text-[3.9rem]"
         >
-          BALA JI FINANCE
+          {brand.full}
         </p>
 
         <div className="relative mt-[-2rem] border-t border-white/10 pt-6 text-xs leading-relaxed text-on-navy-muted">
           <p className="max-w-4xl">
-            Bala Ji Finance is a loan facilitation and advisory firm and does not lend money itself. All loans are
+            {brand.short} ({brand.full}) is a loan facilitation and advisory firm and does not lend money
+            itself. All loans are
             sanctioned and disbursed at the sole discretion of our partner banks and NBFCs, subject to their credit
             policy. Interest rates shown are indicative. Grievances: {contact.grievance.name},{" "}
             <a href={`mailto:${contact.grievance.email}`} className="underline underline-offset-2 hover:text-saffron">
@@ -94,7 +95,7 @@ export function Footer() {
             .
           </p>
           <div className="mt-4 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
-            <p>© {new Date().getFullYear()} Bala Ji Finance. All rights reserved.</p>
+            <p>© {new Date().getFullYear()} {brand.full}. All rights reserved.</p>
             <p className="flex gap-4">
               <Link href="/contact" className="hover:text-saffron">
                 Privacy policy

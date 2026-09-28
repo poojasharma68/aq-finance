@@ -399,7 +399,7 @@ export function ApplyForm({ initialType, initialAmount }) {
                   <Link href="/contact" className="font-semibold text-ink underline decoration-saffron underline-offset-2">
                     Privacy Policy
                   </Link>
-                  , and authorise Bala Ji Finance and its lending partners to contact me about this application, overriding
+                  , and authorise SBFT and its lending partners to contact me about this application, overriding
                   DND.
                 </span>
               </label>

@@ -11,7 +11,7 @@ import { Initials, LoanIcon, PartnerMark, SectionLabel, Stars } from "@/componen
 
 export function StatsBand() {
   return (
-    <section aria-label="Bala Ji Finance in numbers" className="bg-navy text-on-navy">
+    <section aria-label="SBFT in numbers" className="bg-navy text-on-navy">
       <Stagger className="shell grid grid-cols-2 lg:grid-cols-4" stagger={0.1}>
         {stats.map((stat, i) => (
           <StaggerItem
@@ -40,12 +40,12 @@ export function PartnerMarquee() {
   const others = partners.filter((p) => p.type !== "bank");
 
   return (
-    <section className="py-20 md:py-28">
+    <section className="section-y">
       <div className="shell grid gap-6 md:grid-cols-12 md:items-end">
         <Reveal className="md:col-span-7">
           <SectionLabel>Our banking &amp; NBFC partners</SectionLabel>
-          <h2 className="mt-5 font-display text-[clamp(2.2rem,4.4vw,3.4rem)] leading-[1.02] tracking-tight text-ink">
-            One application. <em className="text-saffron-ink">Seventeen lenders</em> looking at it.
+          <h2 className="mt-5 font-display text-[clamp(2rem,4vw,2.9rem)] leading-[1.02] tracking-tight text-ink">
+            One application. <em className="text-saffron-ink">200+ lenders</em> looking at it.
           </h2>
         </Reveal>
         <Reveal delay={0.1} className="md:col-span-5 md:pb-2">
@@ -97,12 +97,12 @@ function MarqueeRow({ items, reverse = false }) {
 
 export function LoanList() {
   return (
-    <section className="border-t border-line py-20 md:py-28">
+    <section className="border-t border-line section-y">
       <div className="shell">
         <div className="grid gap-6 md:grid-cols-12 md:items-end">
           <Reveal className="md:col-span-7">
             <SectionLabel index="01">Loan products</SectionLabel>
-            <h2 className="mt-5 font-display text-[clamp(2.2rem,4.4vw,3.4rem)] leading-[1.02] tracking-tight text-ink">
+            <h2 className="mt-5 font-display text-[clamp(2rem,4vw,2.9rem)] leading-[1.02] tracking-tight text-ink">
               Six ways to fund <em className="text-saffron-ink">what&apos;s next.</em>
             </h2>
           </Reveal>
@@ -114,12 +114,12 @@ export function LoanList() {
           </Reveal>
         </div>
 
-        <Stagger as="ul" className="mt-14 border-b border-line" stagger={0.07}>
+        <Stagger as="ul" className="mt-8 border-b border-line" stagger={0.07}>
           {loans.map((loan, i) => (
             <StaggerItem as="li" key={loan.slug}>
               <Link
                 href={`/loans?type=${loan.slug}`}
-                className="group relative isolate grid grid-cols-[2.5rem_1fr_auto] items-center gap-x-4 gap-y-1 border-t border-line py-6 md:grid-cols-[3.5rem_minmax(0,1.4fr)_minmax(0,1fr)_8rem_3rem] md:gap-x-6 md:py-8"
+                className="group relative isolate grid grid-cols-[2.5rem_1fr_auto] items-center gap-x-4 gap-y-1 border-t border-line py-5 md:grid-cols-[3.5rem_minmax(0,1.4fr)_minmax(0,1fr)_8rem_3rem] md:gap-x-6 md:py-5"
               >
                 <span
                   aria-hidden="true"
@@ -131,7 +131,7 @@ export function LoanList() {
                   <span className="hidden size-10 shrink-0 place-items-center rounded-full border border-line-strong text-saffron-ink transition-colors group-hover:border-saffron sm:grid">
                     <LoanIcon name={loan.icon} />
                   </span>
-                  <span className="font-display text-[1.65rem] leading-tight text-ink md:text-[2.1rem]">
+                  <span className="font-display text-[1.5rem] leading-tight text-ink md:text-[1.8rem]">
                     {loan.name}
                   </span>
                 </span>
@@ -163,10 +163,10 @@ export function TestimonialPreview() {
   const side = rest.slice(0, 2);
 
   return (
-    <section className="py-20 md:py-28">
+    <section className="section-y">
       <div className="shell">
         <Reveal>
-          <SectionLabel index="04">Happy customers</SectionLabel>
+          <SectionLabel index="03">Happy customers</SectionLabel>
         </Reveal>
 
         <div className="mt-10 grid gap-10 lg:grid-cols-12 lg:gap-14">

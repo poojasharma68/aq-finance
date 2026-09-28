@@ -6,7 +6,7 @@ import { ContactForm } from "./contact-form";
 
 export const metadata = {
   title: "Contact us",
-  description: "Call, WhatsApp or write to Bala Ji Finance. Offices in Gurugram, Mumbai and Bengaluru.",
+  description: "Call, WhatsApp or write to SBFT. Offices in Gurugram, Mumbai and Bengaluru.",
 };
 
 const channels = [

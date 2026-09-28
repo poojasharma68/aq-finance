@@ -12,7 +12,7 @@ export const testimonials = [
     rating: 5,
     month: "Aug 2026",
     quote:
-      "I had applied directly with two banks and heard nothing for a week. The Bala Ji Finance advisor called within the hour, pointed out my salary-account bank would price me better, and the money was in on day four.",
+      "I had applied directly with two banks and heard nothing for a week. The SBFT advisor called within the hour, pointed out my salary-account bank would price me better, and the money was in on day four.",
   },
   {
     name: "Neha Verma",

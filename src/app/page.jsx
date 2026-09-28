@@ -3,7 +3,7 @@ import { Faq } from "@/components/faq";
 import { Reveal } from "@/components/motion";
 import { SectionLabel } from "@/components/ui";
 import { EmiCalculator } from "@/components/home/emi-calculator";
-import { Hero } from "@/components/home/hero";
+import { LoanScannerHero } from "@/components/loan-scanner";
 import { ProcessSteps } from "@/components/home/process-steps";
 import {
   CtaBand,
@@ -16,19 +16,19 @@ import {
 export default function HomePage() {
   return (
     <>
-      <Hero />
+      <LoanScannerHero />
+      <EmiCalculator />
       <StatsBand />
       <PartnerMarquee />
       <LoanList />
-      <EmiCalculator />
       <ProcessSteps />
       <TestimonialPreview />
 
-      <section className="border-t border-line py-20 md:py-28">
+      <section className="border-t border-line section-y">
         <div className="shell grid gap-12 lg:grid-cols-12">
           <Reveal className="lg:col-span-4">
-            <SectionLabel index="05">Questions</SectionLabel>
-            <h2 className="mt-5 font-display text-[clamp(2.2rem,4.4vw,3.4rem)] leading-[1.02] tracking-tight text-ink">
+            <SectionLabel index="04">Questions</SectionLabel>
+            <h2 className="mt-5 font-display text-[clamp(2rem,4vw,2.9rem)] leading-[1.02] tracking-tight text-ink">
               Before you <em className="text-saffron-ink">ask.</em>
             </h2>
             <p className="mt-5 text-ink-soft">

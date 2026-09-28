@@ -86,9 +86,12 @@ export function PartnerDirectory() {
             >
               <div className="flex items-start justify-between gap-4">
                 <div className="flex items-center gap-3.5">
-                  <span className="grid size-12 shrink-0 place-items-center rounded-xl border border-line-strong font-extrabold text-[0.7rem] tracking-tight text-ink transition-colors group-hover:border-saffron group-hover:bg-saffron group-hover:text-on-saffron">
-                    {partner.mark}
-                  </span>
+                  <PartnerLogo
+                    partner={partner}
+                    size="lg"
+                    className="transition-colors group-hover:border-saffron"
+                    monogramClassName="group-hover:bg-saffron group-hover:text-on-saffron"
+                  />
                   <div>
                     <h3 className="font-semibold leading-tight text-ink">{partner.name}</h3>
                     <p className="mt-0.5 text-xs text-muted">

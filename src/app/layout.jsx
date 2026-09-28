@@ -1,4 +1,5 @@
 import { Cinzel, Manrope, Marcellus } from "next/font/google";
+import { brand } from "@/data/site";
 import { Footer } from "@/components/footer";
 import { Header } from "@/components/header";
 import { MotionProvider } from "@/components/motion";
@@ -11,7 +12,7 @@ const manrope = Manrope({
   display: "swap",
 });
 
-// Marcellus and Cinzel echo the flared Roman capitals of the "BALA JI" wordmark
+// Marcellus and Cinzel give the SBFT wordmark its flared Roman capitals
 const marcellus = Marcellus({
   variable: "--font-marcellus",
   subsets: ["latin"],
@@ -28,18 +29,17 @@ const cinzel = Cinzel({
 
 export const metadata = {
   title: {
-    default: "Bala Ji Finance — Aapke sapno ka saath, hamara vishwas",
-    template: "%s · Bala Ji Finance",
+    default: `${brand.short} — ${brand.full}`,
+    template: `%s · ${brand.short}`,
   },
   description:
     "Compare and secure personal, home, business and education loans from 17 partner banks and NBFCs, with one advisor from application to disbursal.",
 };
 
+// the site opens light regardless of the system setting, so the browser UI
+// should match that rather than the visitor's OS preference
 export const viewport = {
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#faf7f2" },
-    { media: "(prefers-color-scheme: dark)", color: "#051326" },
-  ],
+  themeColor: "#faf7f2",
 };
 
 export default function RootLayout({ children }) {

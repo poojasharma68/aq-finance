@@ -1,6 +1,19 @@
 // DEMO DATA — partner names and rates are placeholders for the prototype.
 // Only publish a lender's name/logo once the empanelment and co-branding
 // approvals are in place, and source rates from the partner's current rate card.
+//
+// LOGOS. Each partner may carry an optional `logo` pointing at a file in
+// public/brand/partners/, and PartnerMark renders it instead of the
+// typographic monogram:
+//
+//   { slug: "sbi", name: "State Bank of India", mark: "SBI",
+//     logo: "/brand/partners/sbi.svg", ... }
+//
+// Any proportion works — the image is contained in a fixed box. PNG (use a
+// 2x export, transparent background) and SVG both work. Take the file from
+// the lender's own brand kit: a logo pulled off the web is both the wrong
+// asset and someone else's trademark, and most DSA agreements make marketing
+// use conditional on written co-branding approval.
 
 export const partnerTypes = {
   bank: "Bank",

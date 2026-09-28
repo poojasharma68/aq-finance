@@ -62,7 +62,7 @@ export function Hero() {
         <div className="lg:col-span-7">
           <motion.p {...fadeUp(0)} className="eyebrow flex items-center gap-3">
             <span aria-hidden="true" className="h-px w-8 bg-saffron" />
-            Bala Ji Finance · Loans from India&apos;s leading banks
+            SBFT · Loans from India&apos;s leading banks
           </motion.p>
 
           <MaskedHeading

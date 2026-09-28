@@ -1,5 +1,20 @@
 // DEMO DATA — company details, numbers and addresses are placeholders.
 
+/**
+ * The brand, in one place. Everything on the site — the logo lockup, page
+ * titles, the footer and the legal copy — reads from here, so a rename is a
+ * single edit rather than a hunt through the codebase.
+ */
+export const brand = {
+  /** the acronym, used as the everyday name */
+  short: "SBFT",
+  /** the full form, spelled out in the footer and the legal copy */
+  full: "Secure Business Finance & Trust",
+  /** the short descriptor under the wordmark in the logo */
+  strip: "Finance & Trust",
+  tagline: "Aapke sapno ka saath, hamara vishwas",
+};
+
 export const navigation = [
   { href: "/", label: "Home" },
   { href: "/apply", label: "Apply Now" },
@@ -13,9 +28,9 @@ export const contact = {
   phoneHref: "tel:18002104455",
   whatsapp: "+91 98110 44552",
   whatsappHref: "https://wa.me/919811044552",
-  email: "hello@balajifinance.in",
+  email: "hello@sbft.in",
   hours: "Mon–Sat, 9:30 am – 6:30 pm",
-  grievance: { name: "Ritika Malhotra", email: "grievance@balajifinance.in" },
+  grievance: { name: "Ritika Malhotra", email: "grievance@sbft.in" },
 };
 
 export const offices = [
@@ -68,7 +83,7 @@ export const steps = [
 
 export const faqs = [
   {
-    q: "Does Bala Ji Finance lend money directly?",
+    q: "Does SBFT lend money directly?",
     a: "No. We're a loan facilitator empanelled with banks and NBFCs. The loan agreement, interest rate and disbursal always come from the lender, and your sanction letter is on their letterhead.",
   },
   {
