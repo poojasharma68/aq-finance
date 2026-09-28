@@ -10,6 +10,7 @@ const variants = {
     "bg-saffron text-on-saffron shadow-[inset_0_1px_0_rgb(255_255_255/0.35)] hover:bg-[color-mix(in_oklab,var(--saffron)_86%,white)] hover:shadow-[inset_0_1px_0_rgb(255_255_255/0.35),0_10px_30px_-12px_var(--saffron)]",
   outline: "border border-line-strong text-ink hover:border-ink hover:bg-ink hover:text-bg",
   navy: "border border-white/20 text-on-navy hover:border-on-navy hover:bg-on-navy hover:text-navy",
+  light: "bg-on-navy text-navy hover:bg-white hover:shadow-[0_10px_30px_-12px_rgb(255_255_255/0.5)]",
   ink: "bg-ink text-bg hover:bg-[color-mix(in_oklab,var(--ink)_85%,var(--saffron))]",
 };
 

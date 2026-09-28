@@ -5,14 +5,18 @@
  * titles, the footer and the legal copy — reads from here, so a rename is a
  * single edit rather than a hunt through the codebase.
  */
+const short = "SBFT";
+const full = "Shree Balaji Fin Tech";
+
 export const brand = {
-  /** the acronym, used as the everyday name */
-  short: "SBFT",
-  /** the full form, spelled out in the footer and the legal copy */
-  full: "Secure Business Finance & Trust",
-  /** the short descriptor under the wordmark in the logo */
-  strip: "Finance & Trust",
-  tagline: "Aapke sapno ka saath, hamara vishwas",
+  /** the acronym, used as the everyday name in copy ("an SBFT advisor") */
+  short,
+  /** the full form, spelled out in the footer, page titles and legal copy */
+  full,
+  /** both together, for the first mention on a page: "SBFT (Shree Balaji Fin Tech)" */
+  lockup: `${short} (${full})`,
+  /** the descriptor under the wordmark in the logo — spells out the acronym */
+  strip: full,
 };
 
 export const navigation = [
@@ -21,6 +25,7 @@ export const navigation = [
   { href: "/loans", label: "Loan Products" },
   { href: "/partners", label: "Our Partners" },
   { href: "/testimonials", label: "Testimonials" },
+  { href: "/about", label: "About Us" },
 ];
 
 export const contact = {
@@ -52,9 +57,8 @@ export const offices = [
 ];
 
 export const stats = [
-  { label: "Loans facilitated", value: 1240, prefix: "₹", suffix: " Cr", note: "since 2017" },
-  { label: "Customers funded", value: 18600, suffix: "+", note: "across 120+ cities" },
-  { label: "Lending partners", value: 17, note: "banks, NBFCs & HFCs" },
+{ label: "Loans facilitated", value: 25, suffix: " Cr+", note: "since 2017" },  { label: "Customers funded", value: 1000, suffix: "+", note: "across 120+ cities" },
+  { label: "Lending partners", value: 250, suffix: "+", note: "banks, NBFCs & HFCs" },
   { label: "Median time to sanction", value: 72, suffix: " hrs", note: "salaried applicants" },
 ];
 
@@ -67,7 +71,7 @@ export const steps = [
   {
     title: "We match you with lenders",
     body: "An advisor compares offers across our partners and calls you with the two or three that actually fit.",
-    meta: "Within 4 working hours",
+    meta: "Within 30 minutes",
   },
   {
     title: "Documents, collected",
@@ -83,7 +87,7 @@ export const steps = [
 
 export const faqs = [
   {
-    q: "Does SBFT lend money directly?",
+    q: `Does ${brand.short} lend money directly?`,
     a: "No. We're a loan facilitator empanelled with banks and NBFCs. The loan agreement, interest rate and disbursal always come from the lender, and your sanction letter is on their letterhead.",
   },
   {
@@ -96,7 +100,7 @@ export const faqs = [
   },
   {
     q: "How quickly will someone call me back?",
-    a: "Within 4 working hours for applications sent Monday to Saturday between 9:30 am and 6:30 pm. Anything later is picked up first thing the next working morning.",
+    a: "Within 30 minutes for applications sent Monday to Saturday between 9:30 am and 6:30 pm. Anything later is picked up first thing the next working morning.",
   },
   {
     q: "My CIBIL score is below 700. Can you still help?",

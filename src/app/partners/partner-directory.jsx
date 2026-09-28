@@ -1,80 +1,22 @@
 "use client";
 
-import { useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { loans } from "@/data/loans";
 import { partners, partnerTypes } from "@/data/partners";
+import { stats } from "@/data/site";
 import { cn } from "@/lib/cn";
 import { EASE } from "@/components/motion";
+import { PartnerLogo } from "@/components/ui";
 
-const filters = [
-  { value: "all", label: "All partners" },
-  { value: "bank", label: "Banks" },
-  { value: "nbfc", label: "NBFCs" },
-  { value: "hfc", label: "Housing finance" },
-];
-
-const productFilters = [{ slug: "any", shortName: "Any product" }, ...loans];
+// "250+" — the same figure the home page stats show
+const totalPartners = stats.find((s) => s.label === "Lending partners");
 
 export function PartnerDirectory() {
-  const [type, setType] = useState("all");
-  const [product, setProduct] = useState("any");
-
-  const visible = partners.filter(
-    (p) => (type === "all" || p.type === type) && (product === "any" || p.products.includes(product)),
-  );
-
   return (
     <div>
-      <div className="flex flex-col gap-4 border-b border-line pb-6 lg:flex-row lg:items-center lg:justify-between">
-        <div role="group" aria-label="Filter by lender type" className="flex flex-wrap gap-2">
-          {filters.map((f) => {
-            const count = f.value === "all" ? partners.length : partners.filter((p) => p.type === f.value).length;
-            const active = type === f.value;
-            return (
-              <button
-                key={f.value}
-                type="button"
-                aria-pressed={active}
-                onClick={() => setType(f.value)}
-                className={cn(
-                  "relative rounded-full px-4 py-2 text-sm font-semibold transition-colors",
-                  active ? "text-bg" : "text-ink-soft hover:text-ink",
-                )}
-              >
-                {active && (
-                  <motion.span
-                    layoutId="partner-filter"
-                    className="absolute inset-0 rounded-full bg-ink"
-                    transition={{ type: "spring", stiffness: 400, damping: 34 }}
-                  />
-                )}
-                <span className="relative">
-                  {f.label} <span className={cn("tabular", active ? "text-bg/60" : "text-muted")}>{count}</span>
-                </span>
-              </button>
-            );
-          })}
-        </div>
-        <label className="flex items-center gap-3 text-sm text-muted">
-          Offers
-          <select value={product} onChange={(e) => setProduct(e.target.value)} className="field h-10 w-56 rounded-full text-sm">
-            {productFilters.map((p) => (
-              <option key={p.slug} value={p.slug}>
-                {p.shortName}
-              </option>
-            ))}
-          </select>
-        </label>
-      </div>
-
-      <p className="mt-6 text-sm text-muted" aria-live="polite">
-        Showing <span className="font-semibold text-ink tabular">{visible.length}</span> of {partners.length} lenders
-      </p>
-
-      <motion.ul layout className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      <motion.ul layout className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         <AnimatePresence mode="popLayout">
-          {visible.map((partner) => (
+          {partners.map((partner) => (
             <motion.li
               key={partner.slug}
               layout
@@ -89,11 +31,11 @@ export function PartnerDirectory() {
                   <PartnerLogo
                     partner={partner}
                     size="lg"
-                    className="transition-colors group-hover:border-saffron"
+                    bordered={false}
                     monogramClassName="group-hover:bg-saffron group-hover:text-on-saffron"
                   />
                   <div>
-                    <h3 className="font-semibold leading-tight text-ink">{partner.name}</h3>
+                    <h3 className="heading-4 text-ink">{partner.name}</h3>
                     <p className="mt-0.5 text-xs text-muted">
                       {partnerTypes[partner.type]} · partner since {partner.since}
                     </p>
@@ -128,7 +70,7 @@ export function PartnerDirectory() {
                       key={slug}
                       className={cn(
                         "rounded-full border px-2.5 py-1 text-xs font-medium",
-                        product === slug ? "border-saffron bg-saffron-soft text-ink" : "border-line text-ink-soft",
+                        "border-line text-ink-soft",
                       )}
                     >
                       {loan.shortName}
@@ -138,12 +80,24 @@ export function PartnerDirectory() {
               </ul>
             </motion.li>
           ))}
+          <motion.li
+            key="many-more"
+            layout
+            className="flex flex-col justify-center rounded-[1.25rem] bg-navy p-6 text-on-navy"
+          >
+            <p className="figure text-4xl leading-none text-saffron tabular">
+              + {totalPartners.value - partners.length}
+              {totalPartners.suffix}
+            </p>
+            <h3 className="heading-4 mt-3">And many more lenders</h3>
+            <p className="mt-2 text-sm text-on-navy-muted">
+              These are just a few of our {totalPartners.value}
+              {totalPartners.suffix} banking &amp; NBFC partners. Tell us what you need and your advisor will match
+              you with the right one.
+            </p>
+          </motion.li>
         </AnimatePresence>
       </motion.ul>
-
-      {visible.length === 0 && (
-        <p className="py-16 text-center text-muted">No partners match that combination yet.</p>
-      )}
     </div>
   );
 }

@@ -57,6 +57,48 @@
   color-scheme: dark;
 }
 
+/* ---------------------------------------------------------------
+   Type scale — every heading on the site is the hero's typeface
+   (--font-sans). Sizes are plain px: phone below, then one step at
+   640px and one at 1024px. Change a heading size here, never on the
+   element. The hero headline is the only 700 on a page; every level
+   under it is 600 or lighter.
+---------------------------------------------------------------- */
+:root {
+  --text-hero: 34px;
+  --text-h1: 30px;
+  --text-h2: 24px;
+  --text-h3: 18px;
+  --text-h4: 16px;
+  --text-quote: 21px;
+
+  --font-weight-hero: 700;
+  --font-weight-heading: 600;
+  --font-weight-quote: 500;
+}
+
+/* tablet */
+@media (width >= 640px) {
+  :root {
+    --text-hero: 40px;
+    --text-h1: 34px;
+    --text-h2: 28px;
+    --text-h3: 20px;
+    --text-quote: 24px;
+  }
+}
+
+/* desktop */
+@media (width >= 1024px) {
+  :root {
+    --text-hero: 54px;
+    --text-h1: 42px;
+    --text-h2: 34px;
+    --text-h3: 22px;
+    --text-quote: 30px;
+  }
+}
+
 @theme inline {
   --color-bg: var(--bg);
   --color-surface: var(--surface);
@@ -78,7 +120,6 @@
   --color-danger: var(--danger);
 
   --font-sans: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
-  --font-display: var(--font-marcellus), ui-serif, Georgia, serif;
   --font-brand: var(--font-cinzel), ui-serif, Georgia, serif;
 
   --ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);
@@ -116,7 +157,9 @@
   width: 100%;
   max-width: 78rem;
   margin-inline: auto;
-  padding-inline: 1.25rem;
+  /* side gutter: 8px on phones, 2rem from tablet up */
+  padding-inline: 8px;
+
   @media (width >= 48rem) {
     padding-inline: 2rem;
   }
@@ -139,7 +182,60 @@
   color: var(--saffron-ink);
 }
 
-/* large numbers: the display serif has old-style figures, so amounts use the sans */
+/* Heading presets — size, weight and rhythm in one class, built from the
+   tokens above. `heading-hero` belongs to the page-opening headline only.
+   Tracking stays in em on purpose: it is a fraction of whichever px size
+   the breakpoint hands down, so it never needs restating per breakpoint. */
+@utility heading-hero {
+  font-family: var(--font-sans);
+  font-size: var(--text-hero);
+  font-weight: var(--font-weight-hero);
+  line-height: 1.04;
+  letter-spacing: -0.033em;
+  text-wrap: balance;
+}
+
+@utility heading-1 {
+  font-family: var(--font-sans);
+  font-size: var(--text-h1);
+  font-weight: var(--font-weight-heading);
+  line-height: 1.06;
+  letter-spacing: -0.03em;
+}
+
+@utility heading-2 {
+  font-family: var(--font-sans);
+  font-size: var(--text-h2);
+  font-weight: var(--font-weight-heading);
+  line-height: 1.14;
+  letter-spacing: -0.025em;
+}
+
+@utility heading-3 {
+  font-family: var(--font-sans);
+  font-size: var(--text-h3);
+  font-weight: var(--font-weight-heading);
+  line-height: 1.28;
+  letter-spacing: -0.015em;
+}
+
+@utility heading-4 {
+  font-family: var(--font-sans);
+  font-size: var(--text-h4);
+  font-weight: var(--font-weight-heading);
+  line-height: 1.35;
+}
+
+/* pull quotes sit below the heading weights so the words carry them */
+@utility heading-quote {
+  font-family: var(--font-sans);
+  font-size: var(--text-quote);
+  font-weight: var(--font-weight-quote);
+  line-height: 1.28;
+  letter-spacing: -0.02em;
+}
+
+/* large numbers keep the same sans, with tabular figures */
 @utility figure {
   font-family: var(--font-sans);
   font-weight: 600;
@@ -155,6 +251,14 @@
   html {
     -webkit-tap-highlight-color: transparent;
     scroll-padding-top: 6rem;
+  }
+
+  /* Tailwind v4 resets buttons to the default cursor; tabs, filters and
+     toggles should read as clickable. */
+  button:not(:disabled),
+  [role="button"]:not([aria-disabled="true"]),
+  [role="tab"] {
+    cursor: pointer;
   }
 
   body {
@@ -196,8 +300,8 @@
     text-wrap: balance;
   }
 
-  .font-display em,
-  em.font-display {
+  /* headings use <em> for the saffron accent word — colour, not italics */
+  :is(h1, h2, h3, h4, blockquote) em {
     font-style: normal;
   }
 

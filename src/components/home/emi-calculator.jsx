@@ -112,7 +112,7 @@ export function EmiCalculator() {
     <section id="emi-calculator" className="relative border-t border-line bg-surface-2/50 section-y">
       <div className="shell">
         <Reveal className="text-center">
-          <h2 className="font-display text-[clamp(1.9rem,3.8vw,2.75rem)] leading-[1.06] tracking-tight text-ink">
+          <h2 className="heading-2 text-ink">
             Simplify financial planning with <em className="text-saffron-ink">the right tools.</em>
           </h2>
           <p className="mt-3 text-ink-soft">Flexible EMIs to address your needs.</p>
@@ -230,10 +230,10 @@ export function EmiCalculator() {
             </dl>
 
             <div className="mt-auto flex flex-col gap-3 pt-5 sm:flex-row">
-              <ButtonLink href={`/apply?type=${loanType}&amount=${amount}`} arrow className="flex-1 justify-center">
+              <ButtonLink href={`/apply?type=${loanType}&amount=${amount}`} size="lg" arrow className="w-full justify-center sm:w-auto sm:flex-1">
                 Apply Now
               </ButtonLink>
-              <ButtonLink href={`/loans?type=${loanType}`} variant="outline" arrow className="flex-1 justify-center">
+              <ButtonLink href={`/loans?type=${loanType}`} variant="outline" size="lg" arrow className="w-full justify-center sm:w-auto sm:flex-1">
                 Know More
               </ButtonLink>
             </div>

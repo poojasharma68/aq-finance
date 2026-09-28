@@ -2,7 +2,7 @@ import Link from "next/link";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { loans } from "@/data/loans";
 import { partners } from "@/data/partners";
-import { stats } from "@/data/site";
+import { brand, stats } from "@/data/site";
 import { testimonials } from "@/data/testimonials";
 import { formatCompactINR } from "@/lib/finance";
 import { ButtonLink } from "@/components/button";
@@ -11,7 +11,7 @@ import { Initials, LoanIcon, PartnerMark, SectionLabel, Stars } from "@/componen
 
 export function StatsBand() {
   return (
-    <section aria-label="SBFT in numbers" className="bg-navy text-on-navy">
+    <section aria-label={`${brand.short} in numbers`} className="bg-navy text-on-navy">
       <Stagger className="shell grid grid-cols-2 lg:grid-cols-4" stagger={0.1}>
         {stats.map((stat, i) => (
           <StaggerItem
@@ -44,8 +44,8 @@ export function PartnerMarquee() {
       <div className="shell grid gap-6 md:grid-cols-12 md:items-end">
         <Reveal className="md:col-span-7">
           <SectionLabel>Our banking &amp; NBFC partners</SectionLabel>
-          <h2 className="mt-5 font-display text-[clamp(2rem,4vw,2.9rem)] leading-[1.02] tracking-tight text-ink">
-            One application. <em className="text-saffron-ink">200+ lenders</em> looking at it.
+          <h2 className="mt-5 heading-2 text-ink">
+            One application. <em className="text-saffron-ink">250+ lenders</em> looking at it.
           </h2>
         </Reveal>
         <Reveal delay={0.1} className="md:col-span-5 md:pb-2">
@@ -78,14 +78,17 @@ function MarqueeRow({ items, reverse = false }) {
       <ul
         className={[
           "flex w-max shrink-0 gap-4 pr-4 group-hover:[animation-play-state:paused]",
-          reverse ? "animate-marquee-reverse" : "animate-marquee",
+          // slower on phones, where the same speed crosses a narrow screen much faster
+          reverse
+            ? "animate-marquee-reverse max-sm:[animation-duration:130s]"
+            : "animate-marquee max-sm:[animation-duration:110s]",
         ].join(" ")}
       >
         {[...loop, ...loop].map((partner, i) => (
           <li
             key={`${partner.slug}-${i}`}
             aria-hidden={i >= items.length ? "true" : undefined}
-            className="rounded-2xl border border-line bg-surface px-5 py-4"
+            className="rounded-2xl bg-surface px-5 py-4 [&_span]:border-0"
           >
             <PartnerMark partner={partner} />
           </li>
@@ -102,8 +105,8 @@ export function LoanList() {
         <div className="grid gap-6 md:grid-cols-12 md:items-end">
           <Reveal className="md:col-span-7">
             <SectionLabel index="01">Loan products</SectionLabel>
-            <h2 className="mt-5 font-display text-[clamp(2rem,4vw,2.9rem)] leading-[1.02] tracking-tight text-ink">
-              Six ways to fund <em className="text-saffron-ink">what&apos;s next.</em>
+            <h2 className="mt-5 heading-2 text-ink">
+              Seven ways to fund <em className="text-saffron-ink">what&apos;s next.</em>
             </h2>
           </Reveal>
           <Reveal delay={0.1} className="md:col-span-5 md:pb-2">
@@ -131,19 +134,17 @@ export function LoanList() {
                   <span className="hidden size-10 shrink-0 place-items-center rounded-full border border-line-strong text-saffron-ink transition-colors group-hover:border-saffron sm:grid">
                     <LoanIcon name={loan.icon} />
                   </span>
-                  <span className="font-display text-[1.5rem] leading-tight text-ink md:text-[1.8rem]">
+                  <span className="heading-3 text-ink">
                     {loan.name}
                   </span>
                 </span>
 
                 <span className="col-start-2 text-sm text-ink-soft md:col-start-auto">{loan.tagline}</span>
 
-                <span className="col-start-2 text-sm md:col-start-auto md:text-right">
-                  <span className="text-muted">from </span>
-                  <span className="figure text-2xl text-ink tabular">{loan.rateFrom}%</span>
-                  <span className="block text-xs text-muted tabular">
-                    {formatCompactINR(loan.amount.min)} – {formatCompactINR(loan.amount.max)}
-                  </span>
+                <span className="col-start-2 flex flex-col items-start gap-1 md:col-start-auto">
+                  <span className="text-[0.7rem] font-semibold uppercase tracking-[0.12em] text-muted">From</span>
+                  <span className="figure text-2xl leading-none text-ink tabular">{loan.rateFrom}%</span>
+                  <span className="text-xs text-muted tabular">Up to {formatCompactINR(loan.amount.max)}</span>
                 </span>
 
                 <span className="col-start-3 row-span-3 row-start-1 grid size-11 place-items-center self-center rounded-full border border-line-strong text-ink transition-all duration-500 ease-out-quint group-hover:rotate-45 group-hover:border-saffron group-hover:bg-saffron group-hover:text-on-saffron md:col-start-auto md:row-span-1 md:row-start-auto">
@@ -171,10 +172,10 @@ export function TestimonialPreview() {
 
         <div className="mt-10 grid gap-10 lg:grid-cols-12 lg:gap-14">
           <Reveal as="figure" className="lg:col-span-7">
-            <span aria-hidden="true" className="block font-display text-[7rem] leading-[0.5] text-saffron">
+            <span aria-hidden="true" className="block text-[7rem] font-semibold leading-[0.5] text-saffron">
               &ldquo;
             </span>
-            <blockquote className="mt-4 font-display text-[clamp(1.7rem,3.2vw,2.6rem)] leading-[1.2] tracking-tight text-ink">
+            <blockquote className="mt-4 heading-quote text-ink">
               {featured.quote}
             </blockquote>
             <figcaption className="mt-8 flex items-center gap-4">
@@ -244,17 +245,17 @@ export function CtaBand({ title = "Ready to start your loan journey?", body }) {
           </svg>
           <div className="grid gap-8 md:grid-cols-12 md:items-end">
             <div className="md:col-span-8">
-              <h2 className="font-display text-[clamp(2rem,4.2vw,3.2rem)] leading-[1.05] tracking-tight">{title}</h2>
+              <h2 className="heading-2">{title}</h2>
               <p className="mt-4 max-w-xl text-on-navy-muted">
                 {body ??
-                  "Tell us what you need in two minutes. An advisor calls you back within four working hours with offers that fit."}
+                  "Tell us what you need in two minutes. An advisor calls you back within 30 minutes with offers that fit."}
               </p>
             </div>
             <div className="flex flex-wrap gap-3 md:col-span-4 md:justify-end">
               <ButtonLink href="/apply" size="lg" arrow>
                 Apply now
               </ButtonLink>
-              <ButtonLink href="/contact" size="lg" variant="navy">
+              <ButtonLink href="/contact" size="lg" variant="light">
                 Talk to us
               </ButtonLink>
             </div>

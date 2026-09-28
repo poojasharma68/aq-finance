@@ -1,6 +1,6 @@
 # SBFT — website
 
-Marketing site and loan application flow for SBFT (Secure Business Finance & Trust), built with Next.js 16 (App Router, JavaScript), Tailwind CSS 4 and Motion.
+Marketing site and loan application flow for SBFT (Shree Balaji Fin Tech), built with Next.js 16 (App Router, JavaScript), Tailwind CSS 4 and Motion.
 
 ## Run it
 
@@ -37,6 +37,9 @@ src/
 - **Company details, stats, FAQs, offices** → `src/data/site.js`
 - **Loan products, rates, documents** → `src/data/loans.js`
 - **Partner lenders** → `src/data/partners.js`. Only publish a lender's name or logo once empanelment and co-branding are approved.
+- **Partner logos** → a PNG or SVG in `public/brand/partners/` plus `logo: "/brand/partners/<slug>.png"` on that lender in `src/data/partners.js`. `PartnerLogo` in `src/components/ui.jsx` then renders it everywhere the lender appears — home marquee, partner directory, loan explorer — and falls back to the typographic monogram for anyone without one, so logos can be added one at a time. Any proportion works (the image is contained, never stretched) and it sits on a white chip in both themes. The nine banks are in place; the NBFCs and housing finance companies are still on monograms.
+
+  Source files from the lender's own brand kit. Before committing one, check it has no stock-site watermark, no baked-in transparency checkerboard, and no border box — the supplied exports had all three, and they are invisible until the logo is on a white chip.
 - **Testimonials** → `src/data/testimonials.js` (use real, consented reviews)
 - **Logo** → `src/components/logo.jsx`. The emblem is the original artwork in `public/brand/` (`sbft-emblem.png` and its reversed variant); the SBFT wordmark beside it is typeset, and the name comes from `brand` in `src/data/site.js`. The browser tab icon is `src/app/icon.png`.
 - **Brand colours** → CSS variables at the top of `src/app/globals.css` (light theme under `:root`, dark under `[data-theme="dark"]`).

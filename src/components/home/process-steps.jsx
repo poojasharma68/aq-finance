@@ -18,7 +18,7 @@ export function ProcessSteps() {
         <div className="grid gap-6 md:grid-cols-12 md:items-end">
           <Reveal className="md:col-span-7">
             <SectionLabel index="02">How it works</SectionLabel>
-            <h2 className="mt-5 font-display text-[clamp(2rem,4vw,2.9rem)] leading-[1.02] tracking-tight text-ink">
+            <h2 className="mt-5 heading-2 text-ink">
               From first call to <em className="text-saffron-ink">money in your account.</em>
             </h2>
           </Reveal>
@@ -49,7 +49,7 @@ export function ProcessSteps() {
                 <span className="absolute left-0 top-0 grid size-11 place-items-center rounded-full border border-saffron bg-bg figure text-lg text-saffron-ink tabular lg:relative">
                   {i + 1}
                 </span>
-                <h3 className="font-display text-[1.6rem] leading-tight text-ink lg:mt-8">{step.title}</h3>
+                <h3 className="heading-3 text-ink lg:mt-8">{step.title}</h3>
                 <p className="mt-3 text-[0.95rem] leading-relaxed text-ink-soft">{step.body}</p>
                 <p className="mt-4 inline-flex items-center gap-1.5 rounded-full bg-saffron-soft px-3 py-1 text-xs font-semibold text-saffron-ink">
                   <Clock className="size-3.5" strokeWidth={2} aria-hidden="true" />

@@ -87,11 +87,17 @@
   width: 100%;
   max-width: 78rem;
   margin-inline: auto;
-  padding: 0;
+  /* same side gutter as the site-wide .shell: 8px on phones, 2rem from tablet up */
+  padding: 0 8px 60px;
   display: grid;
   gap: 2.75rem;
   align-items: center;
-  padding-bottom:60px;
+}
+
+@media (width >= 48rem) {
+  .inner {
+    padding-inline: 2rem;
+  }
 }
 
 
@@ -134,9 +140,10 @@
 
 .headline {
   margin: 1.5rem 0 0;
-  /* capped so "Find the Right Loan." holds one line at desktop widths */
-  font-size: clamp(2.3rem, 4.6vw, 3.35rem);
-  font-weight: 700;
+  /* the site's hero preset: the one 700 on the page, capped so
+     "Find the Right Loan." holds one line at desktop widths */
+  font-size: var(--text-hero, 54px);
+  font-weight: var(--font-weight-hero, 700);
   line-height: 1.04;
   letter-spacing: -0.033em;
   text-wrap: balance;
@@ -1059,8 +1066,6 @@
 
   .headline {
     margin-top: 1.2rem;
-    font-size: clamp(2rem, 8.6vw, 2.5rem);
-    letter-spacing: -0.03em;
   }
 
   .support {

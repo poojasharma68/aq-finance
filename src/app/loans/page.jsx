@@ -6,7 +6,7 @@ import { LoanExplorer } from "./loan-explorer";
 export const metadata = {
   title: "Loan products",
   description:
-    "Personal, home, business, education, loan against property and debt consolidation — compare terms, eligibility and documents.",
+    "Personal, home, business, education, loan against property, overdraft and balance transfer / debt consolidation — compare terms, eligibility and documents.",
 };
 
 export default async function LoansPage({ searchParams }) {

@@ -6,14 +6,14 @@ import { ChevronRight } from "lucide-react";
 import { EASE, MaskedHeading } from "./motion";
 
 /** Shared opening block for inner pages. `aside` renders in the right column. */
-export function PageHero({ crumb, eyebrow, lines, description, aside }) {
+export function PageHero({ crumb, eyebrow, lines, description, aside, align = "end" }) {
   return (
     <section className="relative isolate overflow-hidden border-b border-line">
       <div
         aria-hidden="true"
         className="column-lines absolute inset-0 -z-10 [mask-image:linear-gradient(to_bottom,black,transparent)]"
       />
-      <div className="shell grid gap-10 pb-14 pt-10 md:pb-20 md:pt-14 lg:grid-cols-12 lg:items-end">
+      <div className={`shell grid gap-10 pb-14 pt-10 md:pb-20 md:pt-14 lg:grid-cols-12 ${align === "start" ? "lg:items-start" : "lg:items-end"}`}>
         <div className="lg:col-span-7">
           <motion.nav
             aria-label="Breadcrumb"
@@ -46,7 +46,7 @@ export function PageHero({ crumb, eyebrow, lines, description, aside }) {
           </motion.p>
           <MaskedHeading
             lines={lines}
-            className="mt-5 font-display text-[clamp(2.8rem,6.4vw,5.2rem)] leading-[0.95] tracking-[-0.02em] text-ink"
+            className="mt-5 heading-hero text-ink"
           />
           <motion.p
             initial={{ opacity: 0, y: 16 }}

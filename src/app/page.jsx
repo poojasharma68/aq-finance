@@ -28,7 +28,7 @@ export default function HomePage() {
         <div className="shell grid gap-12 lg:grid-cols-12">
           <Reveal className="lg:col-span-4">
             <SectionLabel index="04">Questions</SectionLabel>
-            <h2 className="mt-5 font-display text-[clamp(2rem,4vw,2.9rem)] leading-[1.02] tracking-tight text-ink">
+            <h2 className="mt-5 heading-2 text-ink">
               Before you <em className="text-saffron-ink">ask.</em>
             </h2>
             <p className="mt-5 text-ink-soft">

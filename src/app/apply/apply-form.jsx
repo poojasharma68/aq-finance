@@ -7,7 +7,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { AnimatePresence, motion } from "motion/react";
 import { Check, CircleAlert, LoaderCircle, Lock, Phone } from "lucide-react";
 import { amountRanges, amountToRange, loans, salaryRanges, turnoverRanges } from "@/data/loans";
-import { contact } from "@/data/site";
+import { brand, contact } from "@/data/site";
 import {
   applicationDefaults,
   applicationSchema,
@@ -135,12 +135,12 @@ export function ApplyForm({ initialType, initialAmount }) {
 
         <div className="space-y-10">
           <FormSection index="01" title="Loan requirement" description="Pick the product and a rough amount — you can change it on the call.">
-            <div role="radiogroup" aria-label="Loan type" className="grid grid-cols-2 gap-2.5 sm:grid-cols-3">
+            <div role="radiogroup" aria-label="Loan type" className="grid grid-cols-2 gap-2 sm:grid-cols-3">
               {loans.map((loan) => (
                 <label
                   key={loan.slug}
                   className={cn(
-                    "group relative flex cursor-pointer flex-col gap-3 rounded-xl border bg-surface p-4 transition-colors",
+                    "group relative flex min-h-12 cursor-pointer items-center gap-2.5 rounded-[0.65rem] border bg-surface px-3 py-2 transition-colors last:col-span-full",
                     "hover:border-ink/40 has-[:checked]:border-saffron has-[:checked]:bg-saffron-soft",
                     "has-[:focus-visible]:ring-4 has-[:focus-visible]:ring-saffron/25",
                     errors.loanType ? "border-danger" : "border-line-strong",
@@ -157,14 +157,14 @@ export function ApplyForm({ initialType, initialAmount }) {
                       },
                     })}
                   />
-                  <span className="flex items-center justify-between">
-                    <LoanIcon name={loan.icon} className="text-saffron-ink" />
-                    <span className="grid size-4.5 place-items-center rounded-full border border-line-strong text-on-saffron transition-colors group-has-[:checked]:border-saffron group-has-[:checked]:bg-saffron">
-                      <Check className="size-3 opacity-0 transition-opacity group-has-[:checked]:opacity-100" strokeWidth={3} aria-hidden="true" />
-                    </span>
+                  <LoanIcon name={loan.icon} className="size-4 text-saffron-ink group-has-[:checked]:hidden" />
+                  <span className="hidden size-4 place-items-center rounded-full bg-saffron text-on-saffron group-has-[:checked]:grid">
+                    <Check className="size-2.5" strokeWidth={3.5} aria-hidden="true" />
                   </span>
-                  <span className="text-sm font-semibold leading-tight text-ink">{loan.shortName}</span>
-                  <span className="text-xs text-muted">from {loan.rateFrom}%</span>
+                  <span className="flex-1 text-sm font-semibold leading-tight text-ink-soft group-has-[:checked]:text-ink">
+                    {loan.shortName}
+                  </span>
+                  <span className="shrink-0 text-xs text-muted tabular">{loan.rateFrom}%</span>
                 </label>
               ))}
             </div>
@@ -399,7 +399,7 @@ export function ApplyForm({ initialType, initialAmount }) {
                   <Link href="/contact" className="font-semibold text-ink underline decoration-saffron underline-offset-2">
                     Privacy Policy
                   </Link>
-                  , and authorise SBFT and its lending partners to contact me about this application, overriding
+                  , and authorise {brand.short} and its lending partners to contact me about this application, overriding
                   DND.
                 </span>
               </label>
@@ -487,7 +487,7 @@ export function ApplyForm({ initialType, initialAmount }) {
             <p className="eyebrow text-saffron!">After you submit</p>
             <ol className="mt-4 space-y-4 text-sm">
               {[
-                ["Advisor call", "Within 4 working hours, from a +91 number ending 4455."],
+                ["Advisor call", "Within 30 minutes, from a +91 number ending 4455."],
                 ["Shortlist of offers", "Two or three lenders, with rate, fee and tenure side by side."],
                 ["Documents", "Upload from your phone or book a doorstep pickup."],
               ].map(([title, body]) => (
@@ -556,12 +556,12 @@ function SuccessPanel({ result, onReset }) {
         />
       </svg>
 
-      <h2 className="mt-8 font-display text-[clamp(2.2rem,5vw,3.2rem)] leading-tight text-ink">
+      <h2 className="mt-8 heading-1 text-ink">
         Thank you, {firstName}. <em className="text-saffron-ink">We&apos;re on it.</em>
       </h2>
       <p className="mx-auto mt-4 max-w-lg text-ink-soft">
-        Your application has been received. An advisor will reach you by {channel} within four
-        working hours.
+        Your application has been received. An advisor will reach you by {channel} within 30
+        minutes.
       </p>
 
       <div className="mx-auto mt-8 inline-flex flex-col items-center rounded-2xl border border-dashed border-saffron px-8 py-4">

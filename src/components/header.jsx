@@ -4,13 +4,37 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { AnimatePresence, motion, useMotionValueEvent, useScroll } from "motion/react";
-import { Clock, Menu, Phone, X } from "lucide-react";
+import {
+  ChevronRight,
+  Clock,
+  FileText,
+  Handshake,
+  House,
+  Layers,
+  Mail,
+  Menu,
+  MessageCircle,
+  MessageSquareQuote,
+  Phone,
+  Users,
+  X,
+} from "lucide-react";
 import { contact, navigation } from "@/data/site";
 import { cn } from "@/lib/cn";
 import { ButtonLink } from "./button";
 import { Logo } from "./logo";
 import { ThemeToggle } from "./theme";
 import { EASE } from "./motion";
+
+const menuIcons = {
+  "/": House,
+  "/apply": FileText,
+  "/loans": Layers,
+  "/partners": Handshake,
+  "/testimonials": MessageSquareQuote,
+  "/about": Users,
+  "/contact": Mail,
+};
 
 function isActive(pathname, href) {
   return href === "/" ? pathname === "/" : pathname.startsWith(href);
@@ -136,40 +160,82 @@ export function Header() {
             transition={{ duration: 0.55, ease: EASE }}
             className="fixed inset-x-0 bottom-0 top-16 z-30 overflow-y-auto bg-bg lg:hidden"
           >
-            <nav aria-label="Mobile" className="shell flex min-h-full flex-col pb-10 pt-6">
-              <ul className="divide-y divide-line border-y border-line">
-                {[...navigation, { href: "/contact", label: "Contact Us" }].map((item, i) => (
-                  <motion.li
-                    key={item.href}
-                    initial={{ opacity: 0, y: 16 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.12 + i * 0.05, duration: 0.5, ease: EASE }}
-                  >
-                    <Link
-                      href={item.href}
-                      onClick={() => setOpen(false)}
-                      className="flex items-baseline justify-between py-4"
+            <nav aria-label="Mobile" className="shell flex min-h-full flex-col gap-6 pb-8 pt-4">
+              <ul className="space-y-1">
+                {[...navigation, { href: "/contact", label: "Contact Us" }].map((item, i) => {
+                  const active = isActive(pathname, item.href);
+                  const Icon = menuIcons[item.href] ?? ChevronRight;
+                  return (
+                    <motion.li
+                      key={item.href}
+                      initial={{ opacity: 0, x: -16 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 0.1 + i * 0.04, duration: 0.45, ease: EASE }}
                     >
-                      <span
+                      <Link
+                        href={item.href}
+                        onClick={() => setOpen(false)}
+                        aria-current={active ? "page" : undefined}
                         className={cn(
-                          "font-display text-[2rem] leading-none",
-                          isActive(pathname, item.href) ? "text-saffron-ink" : "text-ink",
+                          "group flex items-center gap-3.5 rounded-2xl px-3 py-2.5 transition-colors",
+                          active ? "bg-saffron-soft" : "active:bg-surface-2",
                         )}
                       >
-                        {item.label}
-                      </span>
-                      <span className="text-xs text-muted tabular">0{i + 1}</span>
-                    </Link>
-                  </motion.li>
-                ))}
+                        <span
+                          className={cn(
+                            "grid size-10 shrink-0 place-items-center rounded-xl transition-colors",
+                            active
+                              ? "bg-saffron text-on-saffron"
+                              : "border border-line bg-surface text-saffron-ink",
+                          )}
+                        >
+                          <Icon className="size-[1.1rem]" strokeWidth={1.75} aria-hidden="true" />
+                        </span>
+                        <span className="flex-1 text-[1.05rem] font-semibold text-ink">{item.label}</span>
+                        <ChevronRight
+                          className={cn("size-4", active ? "text-saffron-ink" : "text-muted")}
+                          aria-hidden="true"
+                        />
+                      </Link>
+                    </motion.li>
+                  );
+                })}
               </ul>
-              <div className="mt-auto space-y-1 pt-10 text-sm text-muted">
-                <p>Talk to an advisor</p>
-                <a href={contact.phoneHref} className="block figure text-2xl text-ink">
-                  {contact.phone}
-                </a>
-                <p>{contact.hours}</p>
-              </div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4, duration: 0.5, ease: EASE }}
+                className="mt-auto rounded-3xl bg-navy p-5 text-on-navy"
+              >
+                <p className="text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-saffron">
+                  Need help choosing?
+                </p>
+                <p className="mt-1.5 text-sm text-on-navy-muted">
+                  Talk to an advisor · {contact.hours}
+                </p>
+                <ButtonLink href="/apply" size="md" arrow className="mt-4 w-full" onClick={() => setOpen(false)}>
+                  Apply now
+                </ButtonLink>
+                <div className="mt-2.5 grid grid-cols-2 gap-2.5">
+                  <a
+                    href={contact.phoneHref}
+                    className="flex h-11 items-center justify-center gap-2 rounded-full border border-white/20 text-sm font-semibold text-on-navy"
+                  >
+                    <Phone className="size-4" aria-hidden="true" />
+                    Call
+                  </a>
+                  <a
+                    href={contact.whatsappHref}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex h-11 items-center justify-center gap-2 rounded-full border border-white/20 text-sm font-semibold text-on-navy"
+                  >
+                    <MessageCircle className="size-4" aria-hidden="true" />
+                    WhatsApp
+                  </a>
+                </div>
+              </motion.div>
             </nav>
           </motion.div>
         )}

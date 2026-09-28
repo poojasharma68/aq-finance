@@ -1,6 +1,7 @@
 import { z } from "zod";
 import { applicationSchema } from "@/lib/schemas";
 import { createReference, saveSubmission } from "@/lib/submissions";
+import { brand } from "@/data/site";
 
 export async function POST(request) {
   let body;
@@ -23,7 +24,7 @@ export async function POST(request) {
   }
 
   const { website, consent, ...application } = result.data;
-  const reference = createReference("SBFT");
+  const reference = createReference(brand.short);
 
   await saveSubmission("applications", {
     reference,

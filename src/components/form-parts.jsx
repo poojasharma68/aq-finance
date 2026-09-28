@@ -60,7 +60,7 @@ export function FormSection({ index, title, description, children, className }) 
       <legend className="float-left mb-6 w-full">
         <span className="flex items-baseline gap-3">
           <span className="figure text-lg text-saffron-ink tabular">{index}</span>
-          <span className="font-display text-[1.65rem] leading-tight text-ink">{title}</span>
+          <span className="heading-3 text-ink">{title}</span>
         </span>
         {description && <span className="mt-1 block text-sm text-muted">{description}</span>}
       </legend>

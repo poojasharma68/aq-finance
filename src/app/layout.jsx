@@ -1,4 +1,4 @@
-import { Cinzel, Manrope, Marcellus } from "next/font/google";
+import { Cinzel, Manrope } from "next/font/google";
 import { brand } from "@/data/site";
 import { Footer } from "@/components/footer";
 import { Header } from "@/components/header";
@@ -12,14 +12,7 @@ const manrope = Manrope({
   display: "swap",
 });
 
-// Marcellus and Cinzel give the SBFT wordmark its flared Roman capitals
-const marcellus = Marcellus({
-  variable: "--font-marcellus",
-  subsets: ["latin"],
-  weight: "400",
-  display: "swap",
-});
-
+// Cinzel gives the SBFT wordmark its flared Roman capitals
 const cinzel = Cinzel({
   variable: "--font-cinzel",
   subsets: ["latin"],
@@ -44,7 +37,7 @@ export const viewport = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en-IN" suppressHydrationWarning className={`${manrope.variable} ${marcellus.variable} ${cinzel.variable} antialiased`}>
+    <html lang="en-IN" suppressHydrationWarning className={`${manrope.variable} ${cinzel.variable} antialiased`}>
       <head>
         <ThemeScript />
       </head>

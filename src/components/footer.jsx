@@ -85,7 +85,7 @@ export function Footer() {
 
         <div className="relative mt-[-2rem] border-t border-white/10 pt-6 text-xs leading-relaxed text-on-navy-muted">
           <p className="max-w-4xl">
-            {brand.short} ({brand.full}) is a loan facilitation and advisory firm and does not lend money
+            {brand.lockup} is a loan facilitation and advisory firm and does not lend money
             itself. All loans are
             sanctioned and disbursed at the sole discretion of our partner banks and NBFCs, subject to their credit
             policy. Interest rates shown are indicative. Grievances: {contact.grievance.name},{" "}

@@ -1,12 +1,12 @@
 import { Clock, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
-import { contact, offices } from "@/data/site";
+import { brand, contact, offices } from "@/data/site";
 import { PageHero } from "@/components/page-hero";
 import { Reveal, Stagger, StaggerItem } from "@/components/motion";
 import { ContactForm } from "./contact-form";
 
 export const metadata = {
   title: "Contact us",
-  description: "Call, WhatsApp or write to SBFT. Offices in Gurugram, Mumbai and Bengaluru.",
+  description: `Call, WhatsApp or write to ${brand.short}. Offices in Gurugram, Mumbai and Bengaluru.`,
 };
 
 const channels = [
@@ -80,7 +80,7 @@ export default function ContactPage() {
             </Reveal>
 
             <Reveal delay={0.2} className="rounded-2xl border border-line p-6 text-sm text-ink-soft">
-              <h2 className="font-semibold text-ink">Grievance redressal</h2>
+              <h2 className="heading-4 text-ink">Grievance redressal</h2>
               <p className="mt-2 leading-relaxed">
                 If an issue isn&apos;t resolved to your satisfaction, write to our Grievance Officer,{" "}
                 {contact.grievance.name}, at{" "}

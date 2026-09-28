@@ -29,7 +29,7 @@ export function LogoEmblem({ className = "h-11", tone = "auto", priority = false
   );
 }
 
-/** The wordmark: SBFT over the descriptor strip, typeset to match the emblem. */
+/** The wordmark: the acronym over its full form, typeset to match the emblem. */
 function Wordmark({ onDark, size = "header" }) {
   const big = size === "footer";
   return (
@@ -72,7 +72,7 @@ export function Logo({ className, tone = "auto" }) {
   );
 }
 
-/** The full lockup for the footer: emblem, wordmark and the full form spelled out. */
+/** The full lockup for the footer: emblem, wordmark and the tagline beneath. */
 export function FullLogo({ className = "w-56", tone = "auto" }) {
   const onDark = tone === "dark";
   return (
@@ -83,11 +83,11 @@ export function FullLogo({ className = "w-56", tone = "auto" }) {
       </span>
       <span
         className={cn(
-          "mt-4 font-display text-[0.98rem] leading-snug tracking-[0.01em]",
+          "mt-4 text-[0.98rem] leading-snug tracking-[0.01em]",
           onDark ? "text-on-navy" : "text-ink",
         )}
       >
-        {brand.full}
+        {brand.tagline}
       </span>
     </span>
   );

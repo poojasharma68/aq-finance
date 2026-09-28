@@ -63,7 +63,7 @@ export function ContactForm() {
             className="flex min-h-[28rem] flex-col items-start justify-center"
           >
             <CircleCheck className="size-12 text-saffron" strokeWidth={1.4} aria-hidden="true" />
-            <h2 className="mt-6 font-display text-4xl text-ink">Message received, {sent.name}.</h2>
+            <h2 className="mt-6 heading-2 text-ink">Message received, {sent.name}.</h2>
             <p className="mt-3 max-w-md text-ink-soft">
               We reply to most messages the same working day. Keep this reference handy if you call us:
             </p>
@@ -83,7 +83,7 @@ export function ContactForm() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
           >
-            <h2 className="font-display text-[2rem] leading-tight text-ink">Send us a message</h2>
+            <h2 className="heading-2 text-ink">Send us a message</h2>
             <p className="mt-1 text-sm text-muted">Fields marked * are required.</p>
 
             <div className="mt-8 grid gap-5 sm:grid-cols-2">

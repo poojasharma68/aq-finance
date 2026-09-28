@@ -1,27 +1,31 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
+import Link from "next/link";
 import { AnimatePresence, motion } from "motion/react";
 import { ArrowRight, Check, FileText } from "lucide-react";
 import { loans } from "@/data/loans";
-import { indicativeRate, partnersFor } from "@/data/partners";
+import { partnersFor } from "@/data/partners";
+import { stats } from "@/data/site";
 import { calculateEmi, formatCompactINR, formatINR } from "@/lib/finance";
 import { cn } from "@/lib/cn";
 import { ButtonLink } from "@/components/button";
 import { EASE } from "@/components/motion";
-import { LoanIcon, PartnerMark } from "@/components/ui";
+import { LoanIcon } from "@/components/ui";
 
-function tenureLabel({ min, max }) {
+function tenureLabel({ max }) {
   const fmt = (m) => (m % 12 === 0 ? `${m / 12}` : `${(m / 12).toFixed(1)}`);
-  return `${fmt(min)} – ${fmt(max)} years`;
+  return `Up to ${fmt(max)} years`;
 }
+
+// "250+" — the same figure the home page stats show
+const totalPartners = stats.find((s) => s.label === "Lending partners");
 
 export function LoanExplorer({ initialSlug }) {
   const [slug, setSlug] = useState(loans.some((l) => l.slug === initialSlug) ? initialSlug : loans[0].slug);
   const loan = loans.find((l) => l.slug === slug);
-  const lenders = partnersFor(slug)
-    .map((p) => ({ partner: p, rate: indicativeRate(p, slug, loan.example.amount, loan.example.months) }))
-    .sort((a, b) => a.rate - b.rate);
+  const lenders = partnersFor(slug).map((p) => ({ partner: p }));
   const exampleEmi = calculateEmi(loan.example.amount, loan.rateFrom, loan.example.months);
 
   function select(next) {
@@ -31,7 +35,7 @@ export function LoanExplorer({ initialSlug }) {
   }
 
   const terms = [
-    ["Loan amount", `${formatCompactINR(loan.amount.min)} – ${formatCompactINR(loan.amount.max)}`],
+    ["Loan amount", `Up to ${formatCompactINR(loan.amount.max)}`],
     ["Tenure", tenureLabel(loan.tenure)],
     ["Interest rate", `From ${loan.rateFrom}% p.a.`],
     ["Processing fee", loan.processingFee],
@@ -41,7 +45,7 @@ export function LoanExplorer({ initialSlug }) {
   return (
     <div>
       {/* tabs */}
-      <div className="sticky top-16 z-20 -mx-5 border-b border-line bg-[color-mix(in_oklab,var(--bg)_90%,transparent)] px-5 backdrop-blur-lg md:-mx-8 md:px-8">
+      <div className="sticky top-16 z-20 -mx-2 md:-mx-8 border-b border-line bg-[color-mix(in_oklab,var(--bg)_90%,transparent)] px-2 md:px-8 backdrop-blur-lg">
         <div role="tablist" aria-label="Loan products" className="-mb-px flex gap-1 overflow-x-auto [scrollbar-width:none]">
           {loans.map((item) => {
             const active = item.slug === slug;
@@ -92,7 +96,7 @@ export function LoanExplorer({ initialSlug }) {
                 <LoanIcon name={loan.icon} className="size-6" />
               </span>
               <div>
-                <h2 className="font-display text-[2.1rem] leading-none text-ink">{loan.name}</h2>
+                <h2 className="heading-2 text-ink">{loan.name}</h2>
                 <p className="mt-1.5 text-sm text-muted">Starting at {loan.rateFrom}% p.a.</p>
               </div>
             </div>
@@ -167,23 +171,8 @@ export function LoanExplorer({ initialSlug }) {
             </section>
           </div>
 
-          {/* lenders + other options */}
+          {/* other options */}
           <div className="grid content-start gap-6 lg:col-span-3">
-            <section className="rounded-[1.5rem] bg-navy p-6 text-on-navy">
-              <h3 className="eyebrow text-saffron!">Lenders for this loan</h3>
-              <ul className="mt-5 space-y-3">
-                {lenders.slice(0, 6).map(({ partner, rate }) => (
-                  <li key={partner.slug} className="flex items-center justify-between gap-3 text-sm">
-                    <span className="truncate text-on-navy">{partner.name}</span>
-                    <span className="shrink-0 font-semibold text-saffron tabular">{rate.toFixed(2)}%</span>
-                  </li>
-                ))}
-              </ul>
-              {lenders.length > 6 && (
-                <p className="mt-4 text-xs text-on-navy-muted">+ {lenders.length - 6} more partners</p>
-              )}
-            </section>
-
             <section className="rounded-[1.5rem] border border-line bg-surface p-6">
               <h3 className="eyebrow">Other options</h3>
               <ul className="mt-4 divide-y divide-line">
@@ -212,14 +201,43 @@ export function LoanExplorer({ initialSlug }) {
           {/* partner strip */}
           <div className="lg:col-span-12">
             <p className="text-xs font-semibold uppercase tracking-[0.14em] text-muted">
-              Offered through {lenders.length} partners
+              A few of our {totalPartners.value}
+              {totalPartners.suffix} lending partners
             </p>
-            <ul className="mt-4 flex flex-wrap gap-3">
+            <ul className="mt-4 grid grid-cols-3 gap-2.5 sm:grid-cols-5 md:grid-cols-6 lg:grid-cols-10">
               {lenders.map(({ partner }) => (
-                <li key={partner.slug} className="rounded-xl border border-line bg-surface px-3 py-2">
-                  <PartnerMark partner={partner} size="sm" />
+                <li
+                  key={partner.slug}
+                  title={partner.name}
+                  className="relative grid h-14 place-items-center overflow-hidden rounded-lg bg-white shadow-[0_1px_2px_rgb(15_23_42/0.06)] transition-all duration-300 ease-out-quint hover:-translate-y-0.5 hover:shadow-[0_10px_24px_-8px_rgb(15_23_42/0.18)]"
+                >
+                  {partner.logo ? (
+                    <Image
+                      src={partner.logo}
+                      alt={partner.name}
+                      fill
+                      sizes="(min-width: 1024px) 120px, 30vw"
+                      className="object-contain px-2 py-1.5"
+                    />
+                  ) : (
+                    <span className="px-3 text-center text-sm font-semibold text-slate-800">{partner.name}</span>
+                  )}
                 </li>
               ))}
+              <li>
+                <Link
+                  href="/partners"
+                  className="group grid h-14 place-items-center rounded-lg bg-navy px-2 text-center text-on-navy transition-colors hover:bg-saffron hover:text-on-saffron"
+                >
+                  <span className="text-xs font-semibold leading-tight">
+                    {totalPartners.value - lenders.length}+ more
+                    <span className="mt-0.5 flex items-center justify-center gap-1 text-[0.65rem] font-medium opacity-80">
+                      View all
+                      <ArrowRight className="size-3 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
+                    </span>
+                  </span>
+                </Link>
+              </li>
             </ul>
           </div>
         </motion.div>

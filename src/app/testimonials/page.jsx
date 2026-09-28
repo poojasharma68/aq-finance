@@ -1,4 +1,5 @@
 import { loans } from "@/data/loans";
+import { brand } from "@/data/site";
 import { ratingSummary, testimonials } from "@/data/testimonials";
 import { formatCompactINR } from "@/lib/finance";
 import { PageHero } from "@/components/page-hero";
@@ -9,7 +10,7 @@ import { TestimonialWall } from "./testimonial-wall";
 
 export const metadata = {
   title: "Customer stories",
-  description: "What borrowers say about getting their loan through SBFT.",
+  description: `What borrowers say about getting their loan through ${brand.short}.`,
 };
 
 export default function TestimonialsPage() {
@@ -58,10 +59,10 @@ export default function TestimonialsPage() {
         <div className="shell">
           <Reveal as="figure" className="grid gap-8 rounded-[1.75rem] bg-navy p-8 text-on-navy md:grid-cols-12 md:p-12">
             <div className="md:col-span-8">
-              <span aria-hidden="true" className="block font-display text-[6rem] leading-[0.5] text-saffron">
+              <span aria-hidden="true" className="block text-[6rem] font-semibold leading-[0.5] text-saffron">
                 &ldquo;
               </span>
-              <blockquote className="mt-2 font-display text-[clamp(1.6rem,3vw,2.4rem)] leading-[1.22]">
+              <blockquote className="mt-2 heading-quote">
                 {featured.quote}
               </blockquote>
             </div>

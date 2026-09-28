@@ -1,10 +1,11 @@
 import { Clock, Lock, ShieldCheck } from "lucide-react";
+import { brand } from "@/data/site";
 import { PageHero } from "@/components/page-hero";
 import { ApplyForm } from "./apply-form";
 
 export const metadata = {
   title: "Apply for a loan",
-  description: "Tell us what you need in two minutes. An SBFT advisor calls back within four working hours.",
+  description: `Tell us what you need in two minutes. An ${brand.short} advisor calls back within 30 minutes.`,
 };
 
 const promises = [

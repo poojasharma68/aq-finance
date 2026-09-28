@@ -8,7 +8,7 @@ export default function NotFound() {
       <div aria-hidden="true" className="column-lines absolute inset-0 -z-10 [mask-image:linear-gradient(to_bottom,black,transparent)]" />
       <div className="shell flex min-h-[70vh] flex-col items-start justify-center py-20">
         <p className="eyebrow">Error 404</p>
-        <h1 className="mt-5 font-display text-[clamp(3rem,8vw,6rem)] leading-[0.95] tracking-tight text-ink">
+        <h1 className="mt-5 heading-hero text-ink">
           This page took <em className="text-saffron-ink">a detour.</em>
         </h1>
         <p className="mt-6 max-w-md text-ink-soft">
