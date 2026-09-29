@@ -1,7 +1,7 @@
 import { brand } from "@/data/site";
 import { PageHero } from "@/components/page-hero";
 import { CtaBand } from "@/components/home/sections";
-import { FounderSpotlight, Journey, TeamMarquee, TeamGrid } from "./about-sections";
+import { FounderSpotlight, TeamMarquee, TeamGrid } from "./about-sections";
 
 export const metadata = {
   title: "About us",
@@ -20,7 +20,6 @@ export default function AboutPage() {
         align="start"
       />
       <FounderSpotlight />
-      <Journey />
       <TeamGrid />
       <CtaBand
         title="Talk to someone who knows lending."

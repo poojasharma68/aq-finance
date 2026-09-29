@@ -487,7 +487,6 @@ export function ApplyForm({ initialType, initialAmount }) {
             <p className="eyebrow text-saffron!">After you submit</p>
             <ol className="mt-4 space-y-4 text-sm">
               {[
-                ["Advisor call", "Within 30 minutes, from a +91 number ending 4455."],
                 ["Shortlist of offers", "Two or three lenders, with rate, fee and tenure side by side."],
                 ["Documents", "Upload from your phone or book a doorstep pickup."],
               ].map(([title, body]) => (

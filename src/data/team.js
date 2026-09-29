@@ -15,7 +15,7 @@ export const founder = {
   name: "Founder Name",
   role: "Founder & Managing Director",
   photo: "/team/founder.jpg",
-  since: 2017,
+  since: 2025,
   quote:
     "I started this firm after watching families get turned away by one bank and never hear about the ten others that would have said yes. Our job is to make sure that never happens to our customers.",
   bio: [
@@ -79,12 +79,4 @@ export const team = [
     focus: "Doorstep pickup and paperwork, done right the first time.",
     languages: ["Hindi", "English"],
   },
-];
-
-export const milestones = [
-  { year: 2017, title: "Founded", body: "Started with one desk, two lenders and a promise to explain every offer honestly." },
-  { year: 2019, title: "50 lending partners", body: "Added leading private banks and NBFCs, so more profiles found a yes." },
-  { year: 2021, title: "Doorstep documentation", body: "Launched pickup of documents at home, so no one had to take a day off." },
-  { year: 2023, title: "₹25 Cr+ facilitated", body: "Crossed 1,000 funded customers across 120+ cities." },
-  { year: 2025, title: "250+ partners", body: "Now working with 250+ banks, NBFCs and housing finance companies." },
 ];

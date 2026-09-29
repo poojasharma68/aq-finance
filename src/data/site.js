@@ -33,9 +33,9 @@ export const contact = {
   phoneHref: "tel:18002104455",
   whatsapp: "+91 98110 44552",
   whatsappHref: "https://wa.me/919811044552",
-  email: "hello@sbft.in",
+  email: "docs@shreebalajifintech.com",
   hours: "Mon–Sat, 9:30 am – 6:30 pm",
-  grievance: { name: "Ritika Malhotra", email: "grievance@sbft.in" },
+  grievance: { name: "Ritika Malhotra", email: "docs@shreebalajifintech.com" },
 };
 
 export const offices = [
@@ -57,7 +57,7 @@ export const offices = [
 ];
 
 export const stats = [
-{ label: "Loans facilitated", value: 25, suffix: " Cr+", note: "since 2017" },  { label: "Customers funded", value: 1000, suffix: "+", note: "across 120+ cities" },
+{ label: "Loans facilitated", value: 25, suffix: " Cr+", note: "since 2025" },  { label: "Customers funded", value: 1000, suffix: "+", note: "across 120+ cities" },
   { label: "Lending partners", value: 250, suffix: "+", note: "banks, NBFCs & HFCs" },
   { label: "Median time to sanction", value: 72, suffix: " hrs", note: "salaried applicants" },
 ];

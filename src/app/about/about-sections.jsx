@@ -1,10 +1,9 @@
 "use client";
 
-import { useRef } from "react";
 import Image from "next/image";
-import { motion, useScroll, useTransform } from "motion/react";
+import { motion } from "motion/react";
 import { Languages, Quote } from "lucide-react";
-import { founder, milestones, team } from "@/data/team";
+import { founder, team } from "@/data/team";
 import { CountUp, EASE, Reveal, Stagger, StaggerItem } from "@/components/motion";
 import { SectionLabel } from "@/components/ui";
 import { cn } from "@/lib/cn";
@@ -121,63 +120,13 @@ export function FounderSpotlight() {
 
 /* ------------------------------------------------------------------ */
 
-export function Journey() {
-  const ref = useRef(null);
-  const { scrollYProgress } = useScroll({ target: ref, offset: ["start 75%", "end 60%"] });
-  const lineScale = useTransform(scrollYProgress, [0, 1], [0, 1]);
-
-  return (
-    <section className="border-y border-line bg-surface py-16 md:py-24">
-      <div className="shell">
-        <SectionLabel index="02">Our journey</SectionLabel>
-        <Reveal as="h2" className="heading-2 mt-5 max-w-xl text-ink">
-          From one desk to <em className="text-saffron-ink">250+ lenders.</em>
-        </Reveal>
-
-        <div ref={ref} className="relative mt-14">
-          {/* rail: grey track, saffron fill that draws with scroll */}
-          <div aria-hidden="true" className="absolute left-[0.6875rem] top-2 bottom-2 w-px bg-line md:left-0 md:right-0 md:top-[0.6875rem] md:bottom-auto md:h-px md:w-auto" />
-          <motion.div
-            aria-hidden="true"
-            style={{ scaleY: lineScale }}
-            className="absolute left-[0.6875rem] top-2 bottom-2 w-px origin-top bg-saffron md:hidden"
-          />
-          <motion.div
-            aria-hidden="true"
-            style={{ scaleX: lineScale }}
-            className="absolute left-0 right-0 top-[0.6875rem] hidden h-px origin-left bg-saffron md:block"
-          />
-
-          <Stagger as="ol" stagger={0.12} className="grid gap-10 md:grid-cols-5 md:gap-6">
-            {milestones.map((m) => (
-              <StaggerItem as="li" key={m.year} className="relative pl-10 md:pl-0 md:pt-10">
-                <span
-                  aria-hidden="true"
-                  className="absolute left-0 top-0.5 grid size-[1.375rem] place-items-center rounded-full border-2 border-saffron bg-surface md:top-0"
-                >
-                  <span className="size-2 rounded-full bg-saffron" />
-                </span>
-                <p className="figure text-3xl leading-none text-saffron-ink tabular">{m.year}</p>
-                <h3 className="heading-4 mt-3 text-ink">{m.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-muted">{m.body}</p>
-              </StaggerItem>
-            ))}
-          </Stagger>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* ------------------------------------------------------------------ */
-
 export function TeamGrid() {
   return (
     <section className="py-16 md:py-24">
       <div className="shell">
         <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
           <div>
-            <SectionLabel index="03">The team</SectionLabel>
+            <SectionLabel index="02">The team</SectionLabel>
             <Reveal as="h2" className="heading-2 mt-5 max-w-xl text-ink">
               The people who <em className="text-saffron-ink">pick up your call.</em>
             </Reveal>
