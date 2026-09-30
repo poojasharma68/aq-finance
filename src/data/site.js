@@ -92,7 +92,7 @@ export const faqs = [
   },
   {
     q: "Do I pay anything for your service?",
-    a: "Our advice is free for applicants — the partner lender pays us once a loan is disbursed. You only pay the lender's own charges, such as processing fee and stamp duty, which we list before you sign anything.",
+    a: "Our advice is free for applicants.",
   },
   {
     q: "Will checking offers affect my credit score?",
