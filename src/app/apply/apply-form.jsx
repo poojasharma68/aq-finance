@@ -94,7 +94,7 @@ export function ApplyForm({ initialType, initialAmount }) {
         return;
       }
 
-      setResult({ reference: payload.reference, data });
+      setResult({ data });
       requestAnimationFrame(() =>
         document.getElementById("application")?.scrollIntoView({ behavior: "smooth", block: "start" }),
       );
@@ -517,7 +517,7 @@ export function ApplyForm({ initialType, initialAmount }) {
 }
 
 function SuccessPanel({ result, onReset }) {
-  const { reference, data } = result;
+  const { data } = result;
   const loan = loans.find((l) => l.slug === data.loanType);
   const amount = amountRanges.find((a) => a.value === data.amountRange);
   const channel = { call: "phone", whatsapp: "WhatsApp", email: "email" }[data.contactMode];
@@ -562,11 +562,6 @@ function SuccessPanel({ result, onReset }) {
         Your application has been received. An advisor will reach you by {channel} within 30
         minutes.
       </p>
-
-      <div className="mx-auto mt-8 inline-flex flex-col items-center rounded-2xl border border-dashed border-saffron px-8 py-4">
-        <span className="text-xs font-semibold uppercase tracking-[0.16em] text-muted">Reference number</span>
-        <span className="mt-1 figure text-3xl tracking-wide text-ink tabular">{reference}</span>
-      </div>
 
       <dl className="mx-auto mt-10 grid max-w-xl grid-cols-1 gap-px overflow-hidden rounded-xl border border-line bg-line text-left text-sm sm:grid-cols-3">
         {[

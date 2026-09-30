@@ -1,4 +1,3 @@
-import { randomInt } from "node:crypto";
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 
@@ -7,14 +6,6 @@ import path from "node:path";
 // service before going live — serverless hosts have a read-only filesystem.
 
 const DATA_DIR = path.join(process.cwd(), ".data");
-
-export function createReference(prefix) {
-  const now = new Date();
-  const stamp = [now.getFullYear() % 100, now.getMonth() + 1, now.getDate()]
-    .map((n) => String(n).padStart(2, "0"))
-    .join("");
-  return `${prefix}-${stamp}-${randomInt(1000, 10000)}`;
-}
 
 export async function saveSubmission(collection, record) {
   const file = path.join(DATA_DIR, `${collection}.json`);

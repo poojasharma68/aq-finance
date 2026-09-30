@@ -1,6 +1,7 @@
 import { z } from "zod";
-import { contactSchema } from "@/lib/schemas";
-import { createReference, saveSubmission } from "@/lib/submissions";
+import { contactSchema, contactTopics } from "@/lib/schemas";
+import { saveSubmission } from "@/lib/submissions";
+import { sendSubmissionEmail } from "@/lib/mailer";
 
 export async function POST(request) {
   let body;
@@ -23,13 +24,36 @@ export async function POST(request) {
   }
 
   const { website, ...message } = result.data;
-  const reference = createReference("MSG");
+  const receivedAt = new Date();
 
   await saveSubmission("messages", {
-    reference,
-    receivedAt: new Date().toISOString(),
+    receivedAt: receivedAt.toISOString(),
     ...message,
   });
 
-  return Response.json({ ok: true, reference }, { status: 201 });
+  const topic = contactTopics.find((t) => t.value === message.topic)?.label ?? message.topic;
+
+  try {
+    await sendSubmissionEmail({
+      subject: `New enquiry — ${message.name}, ${topic}`,
+      heading: "New contact enquiry",
+      replyTo: message.email,
+      rows: [
+        ["Received", receivedAt.toLocaleString("en-IN", { timeZone: "Asia/Kolkata" })],
+        ["Name", message.name],
+        ["Phone", message.phone],
+        ["Email", message.email],
+        ["Topic", topic],
+        ["Message", message.message],
+      ],
+    });
+  } catch (error) {
+    console.error("[contact] email failed:", error);
+    return Response.json(
+      { ok: false, message: "We couldn't send your message right now. Please try again in a minute." },
+      { status: 502 },
+    );
+  }
+
+  return Response.json({ ok: true }, { status: 201 });
 }

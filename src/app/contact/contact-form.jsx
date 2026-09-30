@@ -43,7 +43,7 @@ export function ContactForm() {
         setServerError(payload.message ?? "Something went wrong. Please try again.");
         return;
       }
-      setSent({ reference: payload.reference, name: data.name.split(" ")[0] });
+      setSent({ name: data.name.split(" ")[0] });
       reset(defaults);
     } catch {
       setServerError("Network problem — please check your connection and try again.");
@@ -65,10 +65,7 @@ export function ContactForm() {
             <CircleCheck className="size-12 text-saffron" strokeWidth={1.4} aria-hidden="true" />
             <h2 className="mt-6 heading-2 text-ink">Message received, {sent.name}.</h2>
             <p className="mt-3 max-w-md text-ink-soft">
-              We reply to most messages the same working day. Keep this reference handy if you call us:
-            </p>
-            <p className="mt-5 rounded-xl border border-dashed border-saffron px-5 py-3 figure text-2xl text-ink tabular">
-              {sent.reference}
+              We reply to most messages the same working day.
             </p>
             <Button variant="outline" className="mt-8" onClick={() => setSent(null)}>
               Send another message

@@ -1,9 +1,8 @@
 import { z } from "zod";
 import { applicationSchema, contactModes, employmentTypes, genders } from "@/lib/schemas";
-import { createReference, saveSubmission } from "@/lib/submissions";
+import { saveSubmission } from "@/lib/submissions";
 import { sendSubmissionEmail } from "@/lib/mailer";
 import { amountRanges, loans, salaryRanges, turnoverRanges } from "@/data/loans";
-import { brand } from "@/data/site";
 
 const labelOf = (list, value) => list.find((item) => item.value === value)?.label ?? value;
 
@@ -28,11 +27,9 @@ export async function POST(request) {
   }
 
   const { website, consent, ...application } = result.data;
-  const reference = createReference(brand.short);
   const receivedAt = new Date();
 
   await saveSubmission("applications", {
-    reference,
     receivedAt: receivedAt.toISOString(),
     consentGiven: consent,
     ...application,
@@ -44,11 +41,10 @@ export async function POST(request) {
 
   try {
     await sendSubmissionEmail({
-      subject: `New loan application ${reference} — ${a.fullName}, ${loanName}`,
-      heading: `New loan application (${reference})`,
+      subject: `New loan application — ${a.fullName}, ${loanName}`,
+      heading: "New loan application",
       replyTo: a.email,
       rows: [
-        ["Reference", reference],
         ["Received", receivedAt.toLocaleString("en-IN", { timeZone: "Asia/Kolkata" })],
         ["Full name", a.fullName],
         ["Mobile", a.mobile],
@@ -84,5 +80,5 @@ export async function POST(request) {
     );
   }
 
-  return Response.json({ ok: true, reference }, { status: 201 });
+  return Response.json({ ok: true }, { status: 201 });
 }
