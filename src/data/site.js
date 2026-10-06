@@ -24,15 +24,15 @@ export const navigation = [
   { href: "/apply", label: "Apply Now" },
   { href: "/loans", label: "Loan Products" },
   { href: "/partners", label: "Our Partners" },
-  { href: "/testimonials", label: "Testimonials" },
+  // { href: "/testimonials", label: "Testimonials" },
   { href: "/about", label: "About Us" },
 ];
 
 export const contact = {
-  phone: "1800 210 4455",
-  phoneHref: "tel:18002104455",
-  whatsapp: "+91 98110 44552",
-  whatsappHref: "https://wa.me/919811044552",
+  phone: "+91 8076 745 734",
+  phoneHref: "tel:+918076745734",
+  whatsapp: "+91 8076 745 734",
+  whatsappHref: "https://wa.me/918076745734",
   email: "docs@shreebalajifintech.com",
   hours: "Mon–Sat, 9:30 am – 6:30 pm",
   grievance: { name: "Ritika Malhotra", email: "docs@shreebalajifintech.com" },

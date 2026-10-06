@@ -26,7 +26,7 @@ export function Footer() {
               We help salaried professionals and business owners compare and secure loans from India&apos;s
               leading banks and NBFCs — with one advisor from application to disbursal.
             </p>
-            <ul className="mt-6 flex flex-wrap gap-x-5 gap-y-2 text-sm">
+            {/* <ul className="mt-6 flex flex-wrap gap-x-5 gap-y-2 text-sm">
               {socials.map((s) => (
                 <li key={s.label}>
                   <a
@@ -39,7 +39,7 @@ export function Footer() {
                   </a>
                 </li>
               ))}
-            </ul>
+            </ul> */}
           </div>
 
           <FooterColumn title="Loans" className="md:col-span-3">

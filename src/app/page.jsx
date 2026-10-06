@@ -22,7 +22,7 @@ export default function HomePage() {
       <PartnerMarquee />
       <LoanList />
       <ProcessSteps />
-      <TestimonialPreview />
+      {/* <TestimonialPreview /> */}
 
       <section className="border-t border-line section-y">
         <div className="shell grid gap-12 lg:grid-cols-12">

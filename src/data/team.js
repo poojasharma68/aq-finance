@@ -14,7 +14,7 @@
 export const founder = {
   name: "Founder Name",
   role: "Founder & Managing Director",
-  photo: "/team/founder.jpg",
+  photo: "/team/founder.png",
   since: 2025,
   quote:
     "I started this firm after watching families get turned away by one bank and never hear about the ten others that would have said yes. Our job is to make sure that never happens to our customers.",
