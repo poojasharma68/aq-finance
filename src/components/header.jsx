@@ -66,7 +66,7 @@ export function Header() {
       <div className="hidden border-b border-line bg-bg text-[0.74rem] text-muted md:block">
         <div className="shell flex h-9 items-center justify-between">
           <p>
-            Loan facilitation across 17 banks &amp; NBFCs <span className="mx-2 text-line-strong">|</span> Free
+            Loan facilitation across 250+ banks &amp; NBFCs <span className="mx-2 text-line-strong">|</span> Free
             advice, no hidden charges
           </p>
           <div className="flex items-center gap-5">
