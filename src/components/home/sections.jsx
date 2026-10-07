@@ -3,11 +3,10 @@ import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { loans } from "@/data/loans";
 import { partners } from "@/data/partners";
 import { brand, stats } from "@/data/site";
-import { testimonials } from "@/data/testimonials";
 import { formatCompactINR } from "@/lib/finance";
 import { ButtonLink } from "@/components/button";
 import { CountUp, Reveal, Stagger, StaggerItem } from "@/components/motion";
-import { Initials, LoanIcon, PartnerMark, SectionLabel, Stars } from "@/components/ui";
+import { LoanIcon, PartnerMark, SectionLabel } from "@/components/ui";
 
 export function StatsBand() {
   return (
@@ -154,73 +153,6 @@ export function LoanList() {
             </StaggerItem>
           ))}
         </Stagger>
-      </div>
-    </section>
-  );
-}
-
-export function TestimonialPreview() {
-  const [featured, ...rest] = testimonials;
-  const side = rest.slice(0, 2);
-
-  return (
-    <section className="section-y">
-      <div className="shell">
-        <Reveal>
-          <SectionLabel index="03">Happy customers</SectionLabel>
-        </Reveal>
-
-        <div className="mt-10 grid gap-10 lg:grid-cols-12 lg:gap-14">
-          <Reveal as="figure" className="lg:col-span-7">
-            <span aria-hidden="true" className="block text-[7rem] font-semibold leading-[0.5] text-saffron">
-              &ldquo;
-            </span>
-            <blockquote className="mt-4 heading-quote text-ink">
-              {featured.quote}
-            </blockquote>
-            <figcaption className="mt-8 flex items-center gap-4">
-              <Initials name={featured.name} />
-              <span>
-                <span className="block font-semibold text-ink">{featured.name}</span>
-                <span className="block text-sm text-muted">
-                  {featured.role}, {featured.city} · Personal loan in {featured.days} days
-                </span>
-              </span>
-            </figcaption>
-          </Reveal>
-
-          <div className="flex flex-col gap-4 lg:col-span-5">
-            {side.map((t, i) => (
-              <Reveal
-                as="figure"
-                key={t.name}
-                delay={0.1 + i * 0.1}
-                className="rounded-2xl border border-line bg-surface p-6"
-              >
-                <Stars rating={t.rating} />
-                <blockquote className="mt-3 text-[0.95rem] leading-relaxed text-ink-soft">{t.quote}</blockquote>
-                <figcaption className="mt-5 flex items-center gap-3">
-                  <Initials name={t.name} className="size-9 text-base" />
-                  <span className="text-sm">
-                    <span className="block font-semibold text-ink">{t.name}</span>
-                    <span className="block text-muted">
-                      {t.role}, {t.city}
-                    </span>
-                  </span>
-                </figcaption>
-              </Reveal>
-            ))}
-            <Reveal delay={0.3}>
-              <Link
-                href="/testimonials"
-                className="group flex items-center justify-between rounded-2xl border border-dashed border-line-strong px-6 py-4 text-sm font-semibold text-ink transition-colors hover:border-saffron"
-              >
-                Read more stories from 2,314 reviews
-                <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
-              </Link>
-            </Reveal>
-          </div>
-        </div>
       </div>
     </section>
   );

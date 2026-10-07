@@ -24,7 +24,6 @@ export const navigation = [
   { href: "/apply", label: "Apply Now" },
   { href: "/loans", label: "Loan Products" },
   { href: "/partners", label: "Our Partners" },
-  // { href: "/testimonials", label: "Testimonials" },
   { href: "/about", label: "About Us" },
 ];
 
@@ -40,19 +39,9 @@ export const contact = {
 
 export const offices = [
   {
-    city: "Gurugram",
+    city: "Delhi",
     label: "Head office",
-    address: "Level 6, Aurum Court, Golf Course Road, Sector 43, Gurugram, Haryana 122009",
-  },
-  {
-    city: "Mumbai",
-    label: "West region",
-    address: "Unit 1104, Meridian House, Andheri–Kurla Road, Andheri East, Mumbai 400059",
-  },
-  {
-    city: "Bengaluru",
-    label: "South region",
-    address: "3rd Floor, Lakeview Point, 100 Feet Road, Indiranagar, Bengaluru 560038",
+    address: "Madhu Vihar, Delhi 110092",
   },
 ];
 

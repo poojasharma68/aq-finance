@@ -14,7 +14,6 @@ import {
   Mail,
   Menu,
   MessageCircle,
-  MessageSquareQuote,
   Phone,
   Users,
   X,
@@ -31,7 +30,6 @@ const menuIcons = {
   "/apply": FileText,
   "/loans": Layers,
   "/partners": Handshake,
-  "/testimonials": MessageSquareQuote,
   "/about": Users,
   "/contact": Mail,
 };

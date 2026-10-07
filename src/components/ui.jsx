@@ -5,7 +5,6 @@ import {
   GraduationCap,
   House,
   Layers,
-  Star,
   UserRound,
   Wallet,
 } from "lucide-react";
@@ -101,40 +100,6 @@ export function PartnerMark({ partner, size = "md", className, showName = true }
           {partner.name}
         </span>
       )}
-    </span>
-  );
-}
-
-export function Stars({ rating, className }) {
-  return (
-    <span className={cn("inline-flex gap-0.5", className)} role="img" aria-label={`${rating} out of 5 stars`}>
-      {Array.from({ length: 5 }, (_, i) => (
-        <Star
-          key={i}
-          aria-hidden="true"
-          strokeWidth={1.5}
-          className={cn("size-3.5", i < rating ? "fill-saffron text-saffron" : "text-line-strong")}
-        />
-      ))}
-    </span>
-  );
-}
-
-export function Initials({ name, className }) {
-  const initials = name
-    .split(" ")
-    .map((part) => part[0])
-    .slice(0, 2)
-    .join("");
-  return (
-    <span
-      aria-hidden="true"
-      className={cn(
-        "grid size-11 shrink-0 place-items-center rounded-full bg-saffron-soft text-lg font-semibold text-saffron-ink",
-        className,
-      )}
-    >
-      {initials}
     </span>
   );
 }

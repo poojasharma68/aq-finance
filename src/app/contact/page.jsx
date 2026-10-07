@@ -6,7 +6,7 @@ import { ContactForm } from "./contact-form";
 
 export const metadata = {
   title: "Contact us",
-  description: `Call, WhatsApp or write to ${brand.short}. Offices in Gurugram, Mumbai and Bengaluru.`,
+  description: `Call, WhatsApp or write to ${brand.short}. Office in Madhu Vihar, Delhi.`,
 };
 
 const channels = [
@@ -63,7 +63,7 @@ export default function ContactPage() {
             </Stagger>
 
             <Reveal delay={0.15} className="rounded-2xl bg-navy p-6 text-on-navy">
-              <h2 className="eyebrow text-saffron!">Our offices</h2>
+              <h2 className="eyebrow text-saffron!">Our office</h2>
               <ul className="mt-5 divide-y divide-white/10">
                 {offices.map((office) => (
                   <li key={office.city} className="flex gap-3 py-4 first:pt-0 last:pb-0">

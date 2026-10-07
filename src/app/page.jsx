@@ -10,7 +10,6 @@ import {
   LoanList,
   PartnerMarquee,
   StatsBand,
-  TestimonialPreview,
 } from "@/components/home/sections";
 
 export default function HomePage() {
@@ -22,7 +21,6 @@ export default function HomePage() {
       <PartnerMarquee />
       <LoanList />
       <ProcessSteps />
-      {/* <TestimonialPreview /> */}
 
       <section className="border-t border-line section-y">
         <div className="shell grid gap-12 lg:grid-cols-12">
