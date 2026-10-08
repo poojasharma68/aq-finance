@@ -10,6 +10,7 @@ import { PartnerOrbit } from "./partner-orbit";
 export const metadata = {
   title: "Our partners",
   description: `The banks, NBFCs and housing finance companies ${brand.short} works with, and the loans each one offers.`,
+  alternates: { canonical: "/partners" },
 };
 
 const reasons = [

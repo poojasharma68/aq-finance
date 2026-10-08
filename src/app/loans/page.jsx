@@ -7,6 +7,7 @@ export const metadata = {
   title: "Loan products",
   description:
     "Personal, home, business, education, loan against property, overdraft and balance transfer / debt consolidation — compare terms, eligibility and documents.",
+  alternates: { canonical: "/loans" },
 };
 
 export default async function LoansPage({ searchParams }) {

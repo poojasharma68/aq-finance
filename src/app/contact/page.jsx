@@ -7,6 +7,7 @@ import { ContactForm } from "./contact-form";
 export const metadata = {
   title: "Contact us",
   description: `Call, WhatsApp or write to ${brand.short}. Office in Madhu Vihar, Delhi.`,
+  alternates: { canonical: "/contact" },
 };
 
 const channels = [

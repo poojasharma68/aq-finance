@@ -6,6 +6,7 @@ import { FounderPromise, FounderSpotlight } from "./about-sections";
 export const metadata = {
   title: "About us",
   description: `Meet the founder of ${brand.short} — a lending specialist who compares lenders for you and sees your loan through to disbursal.`,
+  alternates: { canonical: "/about" },
 };
 
 export default function AboutPage() {

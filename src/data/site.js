@@ -19,6 +19,12 @@ export const brand = {
   strip: full,
 };
 
+/**
+ * The live address of the site. Search engines read the sitemap, robots.txt
+ * and canonical links from this, so it must match the custom domain exactly.
+ */
+export const siteUrl = "https://www.shreebalajifintech.com";
+
 export const navigation = [
   { href: "/", label: "Home" },
   { href: "/apply", label: "Apply Now" },

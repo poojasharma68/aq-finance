@@ -6,6 +6,7 @@ import { ApplyForm } from "./apply-form";
 export const metadata = {
   title: "Apply for a loan",
   description: `Tell us what you need in two minutes. An ${brand.short} advisor calls back within 30 minutes.`,
+  alternates: { canonical: "/apply" },
 };
 
 const promises = [

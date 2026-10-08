@@ -12,6 +12,10 @@ import {
   StatsBand,
 } from "@/components/home/sections";
 
+export const metadata = {
+  alternates: { canonical: "/" },
+};
+
 export default function HomePage() {
   return (
     <>
