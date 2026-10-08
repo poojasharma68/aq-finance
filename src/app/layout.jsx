@@ -21,12 +21,12 @@ const cinzel = Cinzel({
 });
 
 const description =
-  "Compare and secure personal, home, business and education loans from 17 partner banks and NBFCs, with one advisor from application to disbursal.";
+  "Compare and secure personal, home, business and education loans from 250+ partner banks and NBFCs, with one advisor from application to disbursal.";
 
 export const metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: `${brand.full} (${brand.short}) — Loans from 17 banks & NBFCs, Delhi`,
+    default: `${brand.full} (${brand.short}) — Loans from 250+ banks & NBFCs, Delhi`,
     template: `%s · ${brand.full}`,
   },
   description,

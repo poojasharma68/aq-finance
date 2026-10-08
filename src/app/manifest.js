@@ -4,7 +4,7 @@ export default function manifest() {
   return {
     name: brand.full,
     short_name: brand.short,
-    description: "Compare and secure loans from 17 partner banks and NBFCs, with one advisor from application to disbursal.",
+    description: "Compare and secure loans from 250+ partner banks and NBFCs, with one advisor from application to disbursal.",
     start_url: "/",
     display: "standalone",
     background_color: "#faf7f2",
