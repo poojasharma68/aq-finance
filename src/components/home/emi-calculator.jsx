@@ -5,7 +5,7 @@ import { animate, motion, useMotionValue, useTransform } from "motion/react";
 import { loans } from "@/data/loans";
 import { formatINR, loanSummary } from "@/lib/finance";
 import { cn } from "@/lib/cn";
-import { ButtonLink } from "@/components/button";
+import { Button, ButtonLink } from "@/components/button";
 import { EASE, Reveal } from "@/components/motion";
 import { LoanIcon } from "@/components/ui";
 
@@ -86,7 +86,7 @@ function ResultRow({ label, value, dot }) {
         {dot && <span aria-hidden="true" className="size-2.5 rounded-[3px]" style={{ backgroundColor: dot }} />}
         {label}
       </dt>
-      <dd className="font-semibold text-ink tabular">{formatINR(value)}</dd>
+      <dd className="font-semibold text-ink tabular">{value == null ? "—" : formatINR(value)}</dd>
     </div>
   );
 }
@@ -97,8 +97,15 @@ export function EmiCalculator() {
   const [rate, setRate] = useState(10.49);
   const [months, setMonths] = useState(36);
 
-  const { emi, totalInterest, totalPayable } = loanSummary(amount, rate, months);
-  const principalShare = totalPayable > 0 ? amount / totalPayable : 1;
+  // the EMI is only worked out when the visitor asks for it, so the figure on
+  // screen always matches inputs they deliberately submitted
+  const [result, setResult] = useState(null);
+  const stale = result !== null && (result.amount !== amount || result.rate !== rate || result.months !== months);
+  const principalShare = result && result.totalPayable > 0 ? result.amount / result.totalPayable : 1;
+
+  function calculate() {
+    setResult({ amount, rate, months, ...loanSummary(amount, rate, months) });
+  }
 
   function applyPreset(slug) {
     const loan = loans.find((l) => l.slug === slug);
@@ -106,6 +113,7 @@ export function EmiCalculator() {
     setAmount(loan.example.amount);
     setRate(loan.rateFrom);
     setMonths(loan.example.months);
+    setResult(null);
   }
 
   return (
@@ -190,11 +198,19 @@ export function EmiCalculator() {
                 format={(v) => `${v.toFixed(2)}% PA`}
                 parse={(v) => Number.parseFloat(v)}
               />
+              <Button size="lg" onClick={calculate} className="w-full">
+                {stale ? "Recalculate EMI" : "Calculate EMI"}
+              </Button>
             </div>
           </div>
 
           {/* result */}
-          <div className="flex flex-col rounded-[1.25rem] border border-line bg-surface p-5 sm:p-6">
+          <div
+            className={cn(
+              "flex flex-col rounded-[1.25rem] border border-line bg-surface p-5 transition-opacity duration-300 sm:p-6",
+              stale && "opacity-60",
+            )}
+          >
             {/* the EMI figure, with a saffron glow drifting behind it */}
             <div className="relative isolate overflow-hidden rounded-2xl border border-saffron/25 bg-saffron-soft/60 px-5 py-5 text-center">
               <span
@@ -203,13 +219,18 @@ export function EmiCalculator() {
               />
               <p className="text-sm font-medium text-saffron-ink">Your Monthly EMI will be</p>
               <p className="mt-1.5 figure text-[clamp(2rem,4vw,2.6rem)] leading-none text-ink" aria-live="polite">
-                <AnimatedAmount value={emi} />
+                {result ? <AnimatedAmount value={result.emi} /> : "₹ —"}
               </p>
+              {(!result || stale) && (
+                <p className="mt-2 text-xs text-ink-soft">
+                  {result ? "Inputs changed — tap Recalculate EMI to update." : "Set amount, tenure and rate, then tap Calculate EMI."}
+                </p>
+              )}
             </div>
 
             {/* how the total splits — principal against interest */}
             <div
-              className="mt-5 flex h-2 w-full gap-0.5"
+              className={cn("mt-5 flex h-2 w-full gap-0.5", !result && "invisible")}
               role="img"
               aria-label={`Principal is ${Math.round(principalShare * 100)}% of what you repay, interest ${Math.round((1 - principalShare) * 100)}%`}
             >
@@ -224,9 +245,9 @@ export function EmiCalculator() {
             </div>
 
             <dl className="mt-3">
-              <ResultRow label="Amount Payable" value={totalPayable} />
-              <ResultRow label="Interest Amount" value={totalInterest} dot="var(--chart-interest)" />
-              <ResultRow label="Principal Amount" value={amount} dot="var(--chart-principal)" />
+              <ResultRow label="Amount Payable" value={result?.totalPayable} />
+              <ResultRow label="Interest Amount" value={result?.totalInterest} dot="var(--chart-interest)" />
+              <ResultRow label="Principal Amount" value={result?.amount} dot="var(--chart-principal)" />
             </dl>
 
             <div className="mt-auto flex flex-col gap-3 pt-5 sm:flex-row">

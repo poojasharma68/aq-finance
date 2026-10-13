@@ -12,13 +12,13 @@ export const founder = {
   quote:
     "I started this firm after watching families get turned away by one bank and never hear about the ten others that would have said yes. Our job is to make sure that never happens to our customers.",
   bio: [
-    "Before founding the company, Akaash spent over 12 years in retail lending with leading private banks — across credit, sales and branch operations.",
+    "Before founding the company, Akaash spent over 8 years in retail lending with leading private banks — across credit, sales and branch operations.",
     "Today Akaash leads partnerships with our lenders and personally reviews every case that needs a second look.",
   ],
   highlights: [
-    { value: 20, suffix: "+", label: "years in lending" },
+    { value: 8, suffix: "+", label: "years in lending" },
     { value: 250, suffix: "+", label: "lender relationships" },
-    { value: 1000, suffix: "+", label: "families funded" },
+    { value: 500, suffix: "+", label: "families funded" },
   ],
   links: { linkedin: "#" },
 };

@@ -11,7 +11,7 @@ export const metadata = {
 };
 
 const channels = [
-  { icon: Phone, label: "Call toll-free", value: contact.phone, href: contact.phoneHref },
+  { icon: Phone, label: "Call us", value: contact.phone, href: contact.phoneHref },
   { icon: MessageCircle, label: "WhatsApp", value: contact.whatsapp, href: contact.whatsappHref },
   { icon: Mail, label: "Email", value: contact.email, href: `mailto:${contact.email}` },
 ];

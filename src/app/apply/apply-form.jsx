@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
 import { useForm, useWatch } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { AnimatePresence, motion } from "motion/react";
@@ -391,16 +390,8 @@ export function ApplyForm({ initialType, initialAmount }) {
                   {...register("consent")}
                 />
                 <span>
-                  I agree to the{" "}
-                  <Link href="/contact" className="font-semibold text-ink underline decoration-saffron underline-offset-2">
-                    Terms &amp; Conditions
-                  </Link>{" "}
-                  and{" "}
-                  <Link href="/contact" className="font-semibold text-ink underline decoration-saffron underline-offset-2">
-                    Privacy Policy
-                  </Link>
-                  , and authorise {brand.short} and its lending partners to contact me about this application, overriding
-                  DND.
+                  I allow {brand.short} and its lending partners to contact me by call, SMS or WhatsApp about this loan
+                  application.
                 </span>
               </label>
               <Field id="consent" error={errors.consent} className="pl-7" />

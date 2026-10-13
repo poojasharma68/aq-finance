@@ -67,7 +67,7 @@ export function Footer() {
             <a href={contact.phoneHref} className="mt-4 block figure text-3xl leading-none hover:text-saffron">
               {contact.phone}
             </a>
-            <p className="mt-2 text-sm text-on-navy-muted">Toll-free · {contact.hours}</p>
+            <p className="mt-2 text-sm text-on-navy-muted">{contact.hours}</p>
             <a href={`mailto:${contact.email}`} className="mt-4 block text-sm hover:text-saffron">
               {contact.email}
             </a>

@@ -88,7 +88,7 @@ export const applicationSchema = z
     city: requiredText(2, "Enter your city and state"),
     pincode: z.string().trim().regex(/^[1-9][0-9]{5}$/, "Enter a valid 6-digit PIN code"),
     contactMode: oneOf(contactModes.map((c) => c.value), "Choose how we should reach you"),
-    consent: z.boolean().refine((v) => v === true, "Please accept the terms to continue"),
+    consent: z.boolean().refine((v) => v === true, "Please tick this box so we can contact you about your loan"),
 
     // honeypot — real users never see or fill this
     website: z.string().max(0).optional(),
